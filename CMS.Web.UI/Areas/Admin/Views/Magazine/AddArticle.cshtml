@@ -1,0 +1,262 @@
+﻿@model CMS.BLL.Magazine.Models.ArticleModel
+@section css{
+    @Styles.Render("/Content/css/webuploader.css")
+}
+@section scripts{
+    @Scripts.Render("/Content/scripts/webuploader.js", "/Content/scripts/jquery-ui.min.js")
+<script>
+    $(function () {
+        $.getMagazine();
+        $.getCategory();
+        $("#Gygl").change(function () {
+            $.getCategory();
+        })
+    })
+    $.extend({
+        getMagazine: function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("JsonMagazine")",
+                async: false,
+                success: function (data)
+                {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#Gygl"));
+                })
+            }
+        });
+        },
+        getCategory: function () {
+            $("#Category").empty();
+            $.post("@Url.Action("JsonMagazineCategory")", { mid: $("#Gygl").val() }, function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#Category"));
+                })
+            })
+        }
+    });
+
+</script>
+}
+
+<div class="easyui-panel" title="添加文章">
+    @Html.ValidationSummary(true)
+    <div style="padding:10px 60px 20px 60px">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.guid)
+            <table cellpadding="5">
+                <tr>
+                    <td>期刊列表</td>
+                    <td>
+                        <select id="Gygl" name="Gygl"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>报告类型</td>
+                    <td>
+                        <select id="Category" name="Category"></select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.Title)</td>
+                    <td>
+                        @Html.EditorFor(model => model.Title)
+                        @Html.ValidationMessageFor(model => model.Title)
+                        @Html.ValidationMessageFor(model => model.Title)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Author)</td>
+                    <td>
+                        @Html.EditorFor(model => model.Author)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Address)</td>
+                    <td>
+                        @Html.EditorFor(model => model.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Keyword)</td>
+                    <td>
+                        @Html.TextAreaFor(model => model.Keyword)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Summary)</td>
+                    <td>@Html.TextAreaFor(model => model.Summary)</td>
+                </tr>
+                <tr>
+                    <td>权限验证</td>
+                    <td>
+                        <select id="Verify" name="Verify">
+                            <option value="true">需要权限</option>
+                            <option value="false">无需权限</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        }
+        <table cellpadding="5">
+            <tr>
+                <td>文章上传</td>
+                <td>
+                    <div id="uploader">
+                        <div id="thelist"></div>
+                        <div class="btns">
+                            <div id="picker">选择文件</div>
+                            <button id="ctlBtn" class="btn">开始上传</button>
+                        </div>
+                        <div id="imglist" style="display:none">
+                        <ul></ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align:center;padding:5px">
+            <a id="submit" href="javascript:void(0)" class="easyui-linkbutton">添加文章</a>
+            <a id="clear" href="javascript:void(0)" class="easyui-linkbutton">取消</a>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        var $list = $('#thelist'),
+        $btn = $('#ctlBtn'),
+        state = 'pending',
+        uploader;
+        uploader = WebUploader.create({
+            resize: false,
+            server: '@Url.Action("JsonFileUpload")',
+            pick: '#picker',
+            compress: null
+        });
+
+        uploader.options.formData = { 'guid': '@Model.guid' };
+        // 当有文件添加进来的时候
+        uploader.on('fileQueued', function (file) {
+            $list.append('<div id="' + file.id + '" class="preupload">' + file.name + '<span class="pro"></span><span class="state">&nbsp;等待上传...</span></div>');
+            $('#' + file.id).on('click', function () {
+                uploader.removeFile(file, true);
+                $(this).remove();
+            })
+        });
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id);
+            var $percent = $li.find('#progressBar');
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<progress id="progressBar" value="0" max="100"></progress>').appendTo($li.find('span.pro')).find('#progressBar');
+            }
+            $li.find('span.state').text('上传中');
+            $percent.val(percentage * 100);
+        });
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('#progressBar').fadeOut();
+        });
+        uploader.on('uploadSuccess', function (file) {
+            $('#' + file.id).remove();
+        });
+        uploader.on('uploadError', function (file) {
+            $('#' + file.id).find('span.state').text('上传出错');
+        });
+        //所有文件上传完成后触发等数据库部分完成后加入
+        uploader.on('uploadFinished', function () {
+            $.post('@Url.Action("JsonGetUploadPic")', { g: '@Model.guid' }, function (data) {
+                if (data.count > 0)
+                {
+                    $("#imglist ul").empty();
+                    $("#imglist ul").append('<li><div><input id="begin" type="button" value="排序开始" /></div></li>');
+                    //$("#imglist").data("datarow", JSON.stringify(data.row));
+                    $.each(data.row, function (i, item) {
+                        $('<li><div><img src="/Content/upload/magazine/thumbpic/' + item["ImageID"] + '" height="80" /></div><div><a name="del" href=' + item["ID"] + '>删除图片</a></div><span class="imgid" style="display: none;">' + item["ID"] + '</span><span class="sortid" style="display: none;">' + item["SortID"] + '</span></li>').appendTo("#imglist ul");
+                    })
+                    $("#imglist").show();
+                }
+            });
+        });
+        uploader.on('all', function (type) {
+            if (type === 'startUpload') {
+                state = 'uploading';
+            } else if (type === 'stopUpload') {
+                state = 'paused';
+            } else if (type === 'uploadFinished') {
+                state = 'done';
+            }
+            if (state === 'uploading') {
+                $btn.text('暂停上传');
+            } else {
+                $btn.text('开始上传');
+            }
+        });
+        $btn.on('click', function () {
+            if (state === 'uploading') {
+                uploader.stop();
+            } else {
+                uploader.upload();
+            }
+        });
+
+        $(document).on("click", "a[name='del']", function () {
+            if (confirm("确定要删除图片吗？"))
+            {
+                var id = $(this).attr("href");
+                var p = $(this).parent().parent();
+                $.post("@Url.Action("JsonDelImage")", { id: id }, function () {
+                    p.remove();
+                })
+            }
+            return false;
+        })
+        $(document).on("click", "#begin", function () {
+            if ($(this).val() == "排序开始") {
+                $("#imglist ul:not(li:first)").sortable();
+                $(this).val("排序结束");
+            } else {
+                var update_sort = [];
+                function updateConstractor(b, a){
+                    this.id = b;
+                    this.afterid = a;
+                }
+                var after_sort = [];
+                $("#imglist ul li:not(:first)").each(function () {
+                    var obj = {};
+                    obj.id = $(this).find('.imgid').text();
+                    obj.sortid = $(this).find('.sortid').text()
+                    after_sort.push(obj);
+                });
+                for (var key in after_sort)
+                {
+                    var index = parseInt(key) + 1;
+                    if (after_sort[key].sortid != index)
+                    {
+                        update_sort.push(new updateConstractor(after_sort[key].id, index));
+                    }
+                }
+                var rs = JSON.stringify(update_sort);
+                //console.log(rs);
+                $.post('@Url.Action("ChangeImgSort")', { sort: rs }, function () {
+                    alert("排序完成");
+                })
+
+                $("#imglist ul:not(li:first)").sortable('destroy');
+                $(this).val("排序开始");
+            }
+
+        })
+
+        $("#submit").click(function () {
+            $("form").submit();
+        })
+        $("#clear").click(function () {
+            $("form")[0].reset();
+        })
+
+    })
+</script>

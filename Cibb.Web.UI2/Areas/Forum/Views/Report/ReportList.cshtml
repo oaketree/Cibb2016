@@ -1,0 +1,31 @@
+﻿@model Cibb.Web.BLL.Reports.Models.ReportModel
+@if (Model.hasubcategory)
+{
+    foreach (var item in Model.lr)
+    {
+        var index = 0;
+        <div class="center_zhuti">@item.subcategory</div>
+        <div>
+            <ul>
+                @foreach (var item2 in item.title)
+                {
+                    index++;
+                    <li><a href="@Url.Action("Detail", "Report", new { id=item2.linkid})" target="_blank">@index、@item2.title——@item2.speaker</a></li>
+                }
+            </ul>
+        </div>
+    }
+}
+else
+{
+    var index = 0;
+    <div>
+        <ul>
+            @foreach (var item in Model.rl.title)
+            {
+                index++;
+                <li><a href="@Url.Action("Detail", "Report", new { id=item.linkid})" target="_blank">@index、@item.title——@item.speaker</a></li>
+            }
+        </ul>
+    </div>
+}

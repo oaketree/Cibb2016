@@ -1,0 +1,63 @@
+﻿
+<h2>UserData</h2>
+
+
+
+<div id="user"></div>
+<div id="pcopy"></div>
+<input id="passlist" type="button" value="协会注册用户密码列出" />
+<input id="passcopy" type="button" value="用户密码copy" />
+<input id="passcopy2" type="button" value="协会用户密码copy" />
+<input id="othercopy" type="button" value="协会其他copy" />
+<input id="othercopy2" type="button" value="其他copy" />
+<input id="othercopy3" type="button" value="其他person" />
+<input id="changename" type="button" value="修改userdetail" />
+<script>
+    $(function () {
+        $("#passlist").click(function () {
+            $.post('@Url.Action("getUser")', function (data) {
+                $("#user").text(data);
+            })
+        })
+
+        $("#passcopy").click(function () {
+            $.post('@Url.Action("passwordconv")', function (data) {
+                $("#pcopy").text(data);
+            })
+        })
+
+        $("#passcopy2").click(function () {
+            $.post('@Url.Action("passwordXH")', function (data) {
+                $("#pcopy").text(data);
+            })
+        })
+
+
+        $("#othercopy").click(function () {
+            $.post('@Url.Action("copydetailXH")', function (data) {
+                $("#pcopy").text(data);
+            })
+        })
+
+        $("#othercopy2").click(function () {
+            $.post('@Url.Action("copyother")', function (data) {
+                $("#pcopy").text(data);
+            })
+        })
+
+
+        $("#othercopy3").click(function () {
+            $.post('@Url.Action("copyperson")', function (data) {
+                $("#pcopy").text(data);
+            })
+        })
+
+
+        $("#changename").click(function () {
+            $.post('@Url.Action("changename")', function (data) {
+                $("#pcopy").text(data);
+            })
+        })
+    })
+
+</script>

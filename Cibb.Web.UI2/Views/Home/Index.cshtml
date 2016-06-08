@@ -1,0 +1,414 @@
+﻿@{
+    ViewBag.Title = "首页-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/indexcss")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/idxjs")
+}
+@section Header{
+    @Html.Action("Top")
+}
+@section Footer{
+    @Html.Action("Bottom")
+}
+
+<div id="kj_center_01">
+    <div>
+        <div id="center_01_left">
+            <div id="center_01_left_01">
+                <!--news begin-->
+                <div id="bd">
+                    <div class="tab" id="focus_image">
+                        <div class="pages" data-scro="list">
+                            @Html.Action("NewsImageForHome", "News")
+                            @*@{Html.RenderAction("NewsImage");}*@
+                        </div>
+                        <div class="controler" data-scro="controler">
+                        </div>
+                    </div>
+                </div>
+
+                <!--news end-->
+
+
+                <div id="center_01_left_01_right">
+                    <div>
+                        <div class="wen_bu"><img src="/Content/images/xh04.gif" width="82" height="24" /></div>
+                        <div class="more_bu"><a href="@Url.Action("Index","News")" target="_blank">更多</a></div>
+                    </div>
+                    <div>
+                        <div class="shenlan"></div>
+                        <div class="qianlan"></div>
+                    </div>
+                    @Html.Action("NewsAllForHome","News")
+                </div>
+
+            </div>
+            <div id="jwencenter_center_01_left_02">
+                <!--tab begin-->
+                <div>
+                    <div class="tabs_menu">
+                        <div class="selected">分会要闻</div>
+                        <div class="unselected">会员信息</div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="tabs_box">
+                        <div>
+                            <div class="more_bu02"><a href="@Url.Action("List", "News", new { category=113})" target="_blank">更多</a></div>
+
+                            <div class="tabs_box_zwen">
+                                <ul>
+                                    @Html.Action("TitleListForHome","News",new { cid = 113, count = 6 })
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="hide">
+                            <div class="more_bu02"><a href="@Url.Action("List", "News", new { category=114})" target="_blank">更多</a></div>
+                            <div class="tabs_box_zwen">
+                                <ul>
+                                    @Html.Action("TitleListForHome", "News", new { cid = 114, count = 6 })
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--tab end-->
+                <!--tab begin-->
+                <div>
+                    <div class="tabs_menu">
+                        <div class="selected">公告通知</div>
+                        <div class="unselected">分会文件</div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="tabs_box">
+                        <div>
+                            <div class="more_bu02"><a href="@Url.Action("List", "News", new { category=177})" target="_blank">更多</a></div>
+
+                            <div class="tabs_box_zwen">
+                                <ul>
+                                    @Html.Action("TitleListForHome", "News", new { cid = 177, count = 6 })
+                                </ul>
+
+                            </div>
+
+                        </div>
+                        <div class="hide">
+                            <div class="more_bu02"><a href="@Url.Action("List", "News", new { category=124})" target="_blank">更多</a></div>
+                            <div class="tabs_box_zwen">
+                                <ul>
+                                    @Html.Action("TitleListForHome", "News", new { cid = 124, count = 6 })
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--tab end-->
+
+            </div>
+
+            <div id="jwencenter_center_01_left_03">
+                <!--tab begin-->
+                <div>
+                    <div class="tabs_menu">
+                        <div class="selected">政策法规</div>
+                        <div class="unselected">标准规范</div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="tabs_box">
+                        <div>
+                            <div class="more_bu02"><a href="@Url.Action("List", "News", new { category=117})" target="_blank">更多</a></div>
+
+                            <div class="tabs_box_zwen">
+                                <ul>
+                                    @Html.Action("TitleListForHome", "News", new { cid = 117, count = 6 })
+                                </ul>
+
+                            </div>
+
+                        </div>
+                        <div class="hide">
+                            <div class="more_bu02"><a href="@Url.Action("List", "News", new { category=119})" target="_blank">更多</a></div>
+                            <div class="tabs_box_zwen">
+                                <ul>
+                                    @Html.Action("TitleListForHome", "News", new { cid = 119, count = 6 })
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--tab end-->
+                <!--tab begin-->
+                <div>
+                    <div class="tabs_menu">
+                        <div class="selected">技术前沿</div>
+                        <div class="unselected">节能减排</div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="tabs_box">
+                        <div>
+                            <div class="more_bu02"><a href="@Url.Action("List", "News", new { category=108})" target="_blank">更多</a></div>
+
+                            <div class="tabs_box_zwen">
+                                <ul>
+                                    @Html.Action("TitleListForHome", "News", new { cid = 108, count = 6 })
+                                </ul>
+
+                            </div>
+
+                        </div>
+                        <div class="hide">
+                            <div class="more_bu02"><a href="@Url.Action("List", "News", new { category=109})" target="_blank">更多</a></div>
+                            <div class="tabs_box_zwen">
+                                <ul>
+                                    @Html.Action("TitleListForHome", "News", new { cid = 109, count = 6 })
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--tab end-->
+            </div>
+
+            <div id="img_center_01_left_04"><a href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank"><img src="/Content/images/xh_zh01.gif" width="647" height="75" /></a></div>
+
+            <div id="img_center_01_left_05"><a href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank"><img src="/Content/images/xh_zh02.gif" width="647" height="75" /></a></div>
+            <div id="biaoti01" class="bt"><img src="/Content/images/dot02.gif" width="19" height="13" />专题活动</div>
+            <div id="center_01_left_06">
+
+
+                <ul class="artist">
+                    <li class="a2">
+                        <img width="232" height="232" src="/Content/images/dt/dt01.jpg" />
+                        <a class="cover" href="@Url.Action("Detail", "News", new { id = 13891 })" target="_blank">
+                            <strong>工业锅炉分会</strong><br />
+                            <span>第六届第二次会员大会</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a3">
+                        <img width="110" height="110" src="/Content/images/dt/dt02.gif" />
+                        <a class="cover" href="@Url.Action("Detail", "News", new { id = 12478 })" target="_blank">
+                            <strong>工业锅炉分会</strong><br />
+                            <span>六届一次理事长会</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a4">
+                        <img width="110" height="110" src="/Content/images/dt/dt03.jpg" />
+                        <a class="cover" href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank">
+                            <strong>国际锅炉展</strong><br />
+                            <span>2015年10月</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a5">
+                        <img width="110" height="110" src="/Content/images/dt/dt04.jpg" />
+                        <a class="cover" href="@Url.Action("Detail", "News", new { id = 13901 })" target="_blank">
+                            <strong>沈欣理事长致辞</strong><br />
+                            <span>第四届工业锅炉节能减排国际论坛</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a6">
+                        <img width="110" height="110" src="/Content/images/dt/dt05.jpg" />
+                        <a class="cover" href="http://cibb.net.cn/NewsDetail/13903" target="_blank">
+                            <strong>陆燕逊部长讲话</strong><br />
+                            <span>工业锅炉节能减排国际论坛</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a7">
+                        <img width="110" height="110" src="/Content/images/dt/dt06.jpg" />
+                        <a class="cover" href="@Url.Action("Detail", "News", new { id = 13901 })" target="_blank">
+                            <strong>王善武秘书长</strong><br />
+                            <span>第四届工业锅炉节能减排国际论坛</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a8">
+                        <img width="110" height="110" src="/Content/images/dt/dt07.gif" />
+                        <a class="cover" href="@Url.Action("Detail", "News", new { id = 11664 })" target="_blank">
+                            <strong>锅炉制造工艺</strong><br />
+                            <span>和装备发展</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a9">
+                        <img width="232" height="110" src="/Content/images/dt/dt08.jpg" />
+                        <a class="cover" href="http://cibb.net.cn/NewsDetail/13901" target="_blank">
+                            <strong>工业锅炉节能减排国际论坛</strong><br />
+                            <span>第四届</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a10">
+                        <img width="158" height="110" src="/Content/images/dt/dt09.jpg" />
+                        <a class="cover" href="http://www.cibb.net.cn/NewsDetail/13893" target="_blank">
+                            <strong>国际锅炉展开幕</strong><br />
+                            <span>2015年10月</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                    <li class="a12">
+                        <img width="158" height="232" src="/Content/images/dt/dt10.jpg" />
+                        <a class="cover" href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank">
+                            <strong>国际锅炉展</strong><br />
+                            <span>2015年10月</span><br />
+                            查看详情
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="jwen_center_02_left">
+            <div>
+                <div class="center_01_left_07_topbg">
+                    <div>优秀企业家</div>
+                    <div class="jwen_center_02_leftdivlast"><a href="http://www.china-boiler.net/20years/inside/charactor.aspx" target="_blank"><img src="/Content/images/buttom02.gif" width="30" height="36" /></a></div>
+                </div>
+                <div>
+                    <ul>
+                        @Html.Action("PeopleForHome","FriendLink", new { type = 1 })
+                    </ul>
+                </div>
+            </div>
+
+            <!--begin-->
+
+            <div>
+                <div class="center_01_left_07_topbg">
+                    <div>特殊贡献人物</div>
+                    <div class="jwen_center_02_leftdivlast"><a href="http://www.china-boiler.net/20years/inside/charactor.aspx" target="_blank"><img src="/Content/images/buttom02.gif" width="30" height="36" /></a></div>
+                </div>
+                <div>
+                    <ul>
+                        @Html.Action("PeopleForHome", "FriendLink", new { type = 2 })
+                    </ul>
+
+                </div>
+
+            </div>
+            <!--end-->
+            <!--begin-->
+
+            <div>
+                <div class="center_01_left_07_topbg">
+                    <div>优秀会员企业</div>
+                    <div class="jwen_center_02_leftdivlast"><a href="http://www.china-boiler.net/20years/inside/brand.aspx" target="_blank"><img src="/Content/images/buttom02.gif" width="30" height="36" /></a></div>
+                </div>
+                <div class="jwen_center_02_leftdivlast">
+                    <ul>
+                        @Html.Action("CompanyForHome", "FriendLink")
+                    </ul>
+
+                </div>
+
+            </div>
+            <!--end-->
+        </div>
+    </div>
+
+    <div id="center_01_right">
+        <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13" /><img src="/Content/images/tit01.gif" width="72" height="17" /></div>
+        <div id="center_01_right_02">
+            <div><a href="@Url.Action("ApplicationForm")"><img src="/Content/images/rh.gif" width="135" height="66" /></a></div>
+                <div><a href="@Url.Action("List", "News", new { category=116})" target="_blank"><img src="/Content/images/tx1.gif" width="135" height="66" /></a></div>
+        </div>
+        <div class="tit" id="fhld">
+            <div><img src="/Content/images/dot02.gif" width="19" height="13" /><img src="/Content/images/tit02.gif" width="97" height="17" /></div>
+        </div>
+        <div class="ld">
+            <a href="@Url.Action("ShenXin", "Council")" target="_blank"><img src="/Content/images/ld01.jpg" width="124" height="50" /></a><a href="@Url.Action("BranchDirector","Council")" target="_blank"><img src="/Content/images/ld02.jpg" width="157" height="50" /></a><br />
+            <a href="@Url.Action("WangShanWu","Council")" target="_blank"><img src="/Content/images/ld03.jpg" width="124" height="50" /></a><a href="@Url.Action("BranchDirector","Council")" target="_blank"><img src="/Content/images/ld04.jpg" width="157" height="50" /></a>
+        </div>
+
+        <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13" /><img src="/Content/images/tit03.gif" width="72" height="17" /></div>
+
+        <div id="fenhui">
+            <div>
+                <div><img src="/Content/images/fenhui01.jpg" width="103" height="57" /></div>
+                <div><span class="fenhuitit01"><a href="@Url.Action("Introduction","Council")" target="_blank">分会简介</a></span><br /><span class="fenhuitit02">Association Introduction</span></div>
+            </div>
+
+            <div>
+                <div><img src="/Content/images/fenhui02.jpg" width="103" height="57" /></div>
+                <div><span class="fenhuitit01"><a href="@Url.Action("Regulations", "Council")" target="_blank">分会章程</a></span><br /><span class="fenhuitit02">Articles of Association</span></div>
+            </div>
+
+            <div>
+                <div><img src="/Content/images/fenhui03.jpg" width="103" height="57" /></div>
+                <div><span class="fenhuitit01"><a href="@Url.Action("Institution", "Council")" target="_blank">分会机构</a></span><br /><span class="fenhuitit02">Association Mechanism</span></div>
+
+            </div>
+
+            <div>
+                <div><img src="/Content/images/fenhui04.jpg" width="103" height="57" /></div>
+                <div><span class="fenhuitit01"><a href="@Url.Action("Convention", "Council")" target="_blank">行业公约</a></span><br /><span class="fenhuitit02">Industry of Convention</span></div>
+
+            </div>
+
+            <div>
+                <div><img src="/Content/images/fenhui05.jpg" width="103" height="57" /></div>
+                <div><span class="fenhuitit01"><a href="@Url.Action("BranchDirector","Council")" target="_blank">理&nbsp;事&nbsp;会</a></span><br /><span class="fenhuitit02">Board of Association</span></div>
+
+            </div>
+
+            <div>
+                <div><img src="/Content/images/fenhui06.jpg" width="103" height="57" /></div>
+                <div><span class="fenhuitit01"><a href="@Url.Action("BranchMember", "Council")" target="_blank">分会会员</a></span><br /><span class="fenhuitit02">Members of the Association</span></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13" /><img src="/Content/images/tit04.gif" width="72" height="17" /></div>
+        <div><a href="@Url.Action("Detail", "News", new { id = 12706 })" target="_blank"><img src="/Content/images/px.gif" width="286" height="91" /></a></div>
+
+
+        <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13" /><img src="/Content/images/tjfx.gif" width="72" height="17" /></div>
+        <div><a href="@Url.Action("List", "News", new { category=178})" target="_blank"><img src="/Content/images/tj.gif" width="286" height="91" /></a></div>
+
+
+        <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13" /><img src="/Content/images/tit06.gif" width="91" height="18" /></div>
+        <div id="zh">
+
+            <div><a href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank"><img src="/Content/images/zh02.gif" width="128" height="78" /></a></div>
+            <div><a href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank"><img src="/Content/images/zh_02.gif" width="129" height="77" /></a></div>
+            <div><a href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank"><img src="/Content/images/zh_03.gif" width="128" height="78" /></a></div>
+            <div><a href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank"><img src="/Content/images/zh_04.gif" width="128" height="62" /></a></div>
+        </div>
+        <div id="zh02">
+            <div><img src="/Content/images/zhbu01.gif" width="9" height="37" /></div>
+            <div class="zh02_01"><a href="http://www.heatecchina.com/HEATEC15/Exhibitors/lang-simp/Enquiry.aspx" target="_blank"><img src="/Content/images/zhbu05.gif" width="72" height="18" /></a></div>
+            <div><img src="/Content/images/zhbu02.gif" width="18" height="37" /></div>
+            <div class="zh02_02"><a href="http://www.heatecchina.com/HEATEC15/Visitors/lang-simp/PreReg.aspx" target="_blank"><img src="/Content/images/zhbu06.gif" width="108" height="18" /></a></div>
+            <div><img src="/Content/images/zhbu03.gif" width="9" height="37" /></div>
+        </div>
+
+
+        <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13" /><img src="/Content/images/gjlt.gif" width="71" height="17" /></div>
+        <div><a href="@Url.Action("Index","Home", new { area = "Forum" })" target="_blank"><img src="/Content/images/lt.gif" width="286" height="91" /></a></div>
+
+
+    </div>
+</div>

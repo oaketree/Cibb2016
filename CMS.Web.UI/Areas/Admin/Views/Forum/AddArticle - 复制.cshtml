@@ -1,0 +1,84 @@
+﻿@model CMS.BLL.Forum.Models.ArticleModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="easyui-panel" title="添加文章">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>论坛列表</td>
+                    <td>
+                        <input id="Forum" name="Forum" class="easyui-combobox" data-options="valueField:'Value',textField:'Text',editable: false,url:'@Url.Action("JsonForum")',value:'-1'">
+                    @Html.ValidationMessageFor(model => model.Forum)</td>
+                </tr>
+                <tr>
+                    <td>报告类型</td>
+                    <td><input id="Category" name="Category" class="easyui-combobox" data-options="valueField:'Value',textField:'Text',url:'@Url.Action("JsonCategory")'">@Html.ValidationMessageFor(model => model.Category)</td>
+                </tr>
+                <tr>
+                    <td>报告子分类</td>
+                    <td><input id="SubCategory" name="SubCategory" class="easyui-combobox" data-options="valueField:'Value',textField:'Text',url:'@Url.Action("JsonSubCategory")'"></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Title)</td>
+                    <td>@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Title)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Speaker)</td>
+                    <td>@Html.EditorFor(model => model.Speaker, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Speaker)</td>
+                </tr>
+                <tr>
+                    <td>演讲人介绍</td>
+                    <td><input class="easyui-textbox" data-options="multiline:true" name="Profile" style="width:300px;height:100px"></td>
+                </tr>
+              
+            </table>
+            <div style="text-align:center;padding:5px">
+                <a id="submit" href="javascript:void(0)" class="easyui-linkbutton">添加文章</a>
+                <a id="clear" href="javascript:void(0)" class="easyui-linkbutton">取消</a>
+            </div>
+
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        $("#submit").click(function () {
+            $("form").submit();
+        })
+        $("#clear").click(function () {
+            $("form")[0].reset();
+        })
+        $.getSubCategory();
+
+    })
+    $.extend({
+        getSubCategory: function () {
+            $('#Forum').combobox({
+                onSelect: function (rec) {
+                    $('#SubCategory').combobox('clear');
+                    var url = "/Admin/Forum/JsonSubCategory?f=" + rec.Value + "&c=" + $('#Category').combobox('getValue');
+                    //console.log(url);
+                    $('#SubCategory').combobox('reload', url);
+                }
+            });
+            $('#Category').combobox({
+                onSelect: function (rec) {
+                    $('#SubCategory').combobox('clear');
+                    var url = "/Admin/Forum/JsonSubCategory?c=" + rec.Value + "&f=" + $('#Forum').combobox('getValue');
+                    //console.log(url);
+                    $('#SubCategory').combobox('reload', url);
+                }
+            });
+            @*$.post("@Url.Action("JsonForum")", function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#Forum"));
+                })
+            })*@
+        }
+    })
+
+</script>
+
+

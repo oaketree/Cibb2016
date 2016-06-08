@@ -1,0 +1,64 @@
+﻿@section scripts{
+<script>
+    $(function () {
+        $.post('@Url.Action("JsonYear")', function (data) {
+            $.each(data, function (i, item) {
+                $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#Year"));
+            })
+        })
+        $.post('@Url.Action("JsonCategory")', function (data) {
+            $.each(data, function (i, item) {
+                $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#Category"));
+            })
+        })
+    })
+</script>
+}
+@model CMS.BLL.Magazine.Models.MagazineModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="easyui-panel" title="添加分类">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>期刊年份</td>
+                    <td><select id="Year" name="Year"></select></td>
+                </tr>
+                <tr>
+                    <td>期刊期数</td>
+                    <td><select id="Period" name="Period">
+                            <option value="1">第一期</option>
+                            <option value="2">第二期</option>
+                            <option value="3">第三期</option>
+                            <option value="4">第四期</option>
+                            <option value="5">第五期</option>
+                            <option value="6">第六期</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name)@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>分类选择</td>
+                    <td>
+                    <select id="Category" name="Category" size="10" multiple="multiple"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>封面图片</td>
+                    <td><input name="Image" id="Image" type="file"></td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="添加期刊" />
+                <input type="reset" value="取消">
+            </div>
+        </div>
+    </div>
+}
+
+
+

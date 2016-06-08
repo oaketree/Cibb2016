@@ -1,0 +1,7 @@
+﻿@model IQueryable<Cibb.Web.BLL.Model.Link>
+
+@foreach (var p in Model)
+{
+    <li>@Html.ActionLink(p.columnName, "List", new { category = p.columnId}, new { target = "_blank" })</li>
+    <li>@Html.ActionLink(p.title, "Detail", new { id = p.linkid }, new { target = "_blank" })</li>
+}

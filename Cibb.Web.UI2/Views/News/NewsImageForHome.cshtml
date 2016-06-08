@@ -1,0 +1,15 @@
+﻿@model IQueryable<Cibb.Web.BLL.Model.Link>
+
+<a class="item cur" style="left:0;" href='@Url.Action("Detail", new { id=Model.First().linkid})'>
+    <img class="poster" src='@Url.Content("/Content/upload/news/thumbpic/" + Model.First().pic)' />
+    <i>@Html.Cut(Model.First().title,38)</i><b></b>
+</a>
+
+@foreach (var p in Model.Skip(1))
+{
+    <a class="item cur"  href='@Url.Action("Detail", "News", new { id=p.linkid})'>
+        <img class="poster" src='@Url.Content("/Content/upload/news/thumbpic/" + p.pic)' />
+        <i>@Html.Cut(p.title,40)</i><b></b>
+    </a>
+}
+

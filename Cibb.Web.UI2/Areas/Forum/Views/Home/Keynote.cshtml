@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "主题报告——中国电器工业协会工业锅炉分会";
+}
+@section Header{
+    <div id="widtop04_common"></div>
+    <div id="widtop05"></div>
+}
+<div class="widtop08"></div>
+<div id="widcenter09">
+    <div id="center09_01">
+        <div class="center_bjiaoti"><img src="/Content/images/forum/zhuti.gif" width="249" height="88"></div>
+        @Html.Action("ReportListDetail", "Report", new { cid = 1 })
+        <div class="bottom"></div>
+    </div>
+</div>

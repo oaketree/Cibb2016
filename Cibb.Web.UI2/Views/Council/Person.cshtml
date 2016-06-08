@@ -1,0 +1,13 @@
+﻿@model Cibb.Web.Contract.Model.BranchDirector
+<div>
+    <div class="zhaopin"><img src='@Url.Content("/Content/upload/council/member/thumbpic/" + Model.expertpic)' width="130" height="145" /></div>
+    <div class="wenzi">
+        <div>
+            <div class="wenziming">@Model.truename</div>&nbsp; &nbsp; <div class="wenzizhiwu">@Model.duty</div><div>@Model.companyduty</div>
+        </div>
+        <div>
+          @Html.HtmlClear(Model.resume,0)
+        </div>
+    </div>
+    <div></div>
+</div>

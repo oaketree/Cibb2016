@@ -1,0 +1,111 @@
+﻿<div class="form-inline">
+    <fieldset>
+        <legend>信息查询</legend>
+        <label>论坛</label><input id="forum" data-options="url:'@Url.Action("JsonForumTree")'" class="easyui-combotree" />
+        <label>报告类型</label><input id="category" data-options="url:'@Url.Action("JsonCategoryTree")'" class=" easyui-combotree" />
+        <label>查询</label><input id="textbox_title" class="easyui-textbox" />
+        <a href="#" id="btn_search" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>
+    </fieldset>
+</div>
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()">添加报告</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="edit()">修改</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="$('#article_list').datagrid('reload');">刷新</a>
+    </div>
+</div>
+
+<table id="article_list"></table>
+<script type="text/javascript">
+    $("#article_list").datagrid({
+        loadMsg: '加载中……',
+        onLoadError: function () {
+            alert('数据加载失败!');
+        },
+        fitColumns: true,
+        url: '@Url.Action("JsonArticleList")',
+        pageSize: 10,
+        pageNumber: 1,
+        pageList: [10, 20, 30],
+        rownumbers: true,
+        columns: [[
+            { field: 'ID', title: 'ID', checkbox: true },
+            { field: 'Title', title: '报告名称' },
+            { field: 'Category', title: '报告类型' },
+            { field: 'Speaker', title: '演讲人' },
+            { field: 'Hits', title: '点击次数' },
+            { field: 'Forum', title: '所属论坛' },
+        ]],
+        pagination: true,
+        idField: "ID",
+        toolbar: '#toolbar',
+        onDblClickRow: function (rowIndex, rowData) {
+            $.addSubTab("文章修改", "@Url.Action("ArticleEdit")/" + rowData.ID, "icon-page");
+        }
+    });
+    $('#article_list').datagrid('getPager').pagination({
+        displayMsg: '当前显示从{from}-{to}共{total}记录'
+    });
+    //var p = $('#article_list').datagrid('getPager');
+    //(p).pagination({
+    //    beforePageText: '第',//页数文本框前显示的汉字
+    //    afterPageText: '页    共 {pages} 页',
+    //    displayMsg: '共{total}条数据',
+    //});
+
+    //用户注册
+    function add() {
+        $.addSubTab("添加报告", "@Url.Action("AddArticle")", "icon-page");
+    }
+    //删除admin
+    function del() {
+        var rows = $("#article_list").datagrid("getSelections");
+        if (!rows || rows.length < 1) {
+            $.messager.alert("提示", "未选择任何行!");
+            return;
+        } else if (rows.length > 0) {
+            $.messager.confirm("确认", "您确定要删除所选行吗？", function (r) {
+                if (r) {
+                    $.messager.progress();
+                    count = 0;
+                    $.each(rows, function (index, value) {
+                        $.post("@Url.Action("JsonArticleDel")", { id: value.ID }, function () {
+                            if (++count == rows.length) {
+                                $.messager.progress('close');
+                                rows.length = 0;
+                                $("#article_list").datagrid('reload');
+                            }
+                        });
+                    });
+                }
+            });
+        }
+    }
+    //修改
+    function edit() {
+        var rows = $("#article_list").datagrid("getSelections");
+        if (!rows || rows.length < 1) {
+            $.messager.alert("提示", "未选择任何行!");
+            return;
+        } else if (rows.length != 1) {
+            $.messager.alert("提示", "仅能选择一行!");
+            return;
+        } else {
+            $.addSubTab("文章修改", "@Url.Action("ArticleEdit")/" + rows[0].ID, "icon-page");
+        }
+    }
+    $(function () {
+        $("#btn_search").click(function () {
+            $("#article_list").datagrid('load',
+            {
+                title: $("#textbox_title").val(),
+                forumid: $("#forum").combotree('getValue'),
+                categoryid: $("#category").combotree('getValue'),
+            });
+        });
+    })
+</script>
+
+
+

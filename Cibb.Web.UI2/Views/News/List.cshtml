@@ -1,0 +1,73 @@
+﻿@model Cibb.Web.BLL.Model.ViewModels<Cibb.Web.Contract.Model.New>
+@{
+    ViewBag.Title = "中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/newscss")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/newsjs")
+<script>
+    $(function () {
+        $.post("/News/MenuAsync", { category: "@Model.CurrentCategory" }, function (data) {
+            $("#t").html(data);
+        });
+    });
+</script>
+
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+<div id="kj_news_center_01">
+    <div id="kj_news_center_01_left">
+        <div id="kj_news_center_01_left_dh">
+            <div class="tit02" id="t">@*@Html.Action("Menu", new { category = Model.CurrentCategory })*@</div>
+            <div class="news_dh">
+                @Html.ActionLink("分会要闻", "List", new { category = 113 }, new { target = "_blank" })&nbsp; @Html.ActionLink("会员信息", "List", new { category = 114 }, new { target = "_blank" })&nbsp; @Html.ActionLink("公告通知", "List", new { category = 177 }, new { target = "_blank" })&nbsp; @Html.ActionLink("分会文件", "List", new { category = 124 }, new { target = "_blank" })&nbsp; @Html.ActionLink("政策法规", "List", new { category = 117 }, new { target = "_blank" })&nbsp; @Html.ActionLink("标准规范", "List", new { category = 119 }, new { target = "_blank" })&nbsp; @Html.ActionLink("技术前沿", "List", new { category = 108 }, new { target = "_blank" })&nbsp; @Html.ActionLink("节能减排", "List", new { category = 109 }, new { target = "_blank" })
+            </div>
+        </div>
+        <div class="news_bg01"></div>
+        <div id="jwen_nei">
+            @foreach (var p in Model.data)
+            {
+                if (p.pic != string.Empty)
+                {
+                    Html.RenderPartial("NewsWithPicture", p);
+                }
+                else
+                {
+                    Html.RenderPartial("NewsWithoutPicture", p);
+                }
+            }
+        </div>
+
+        <div class="pagination">
+            <ul>
+                @Html.PageLink(Model.pagingInfo, x => Url.Action("List", new { page = x,category=Model.CurrentCategory }))
+            </ul>
+        </div>
+    </div>
+
+    <div id="kj_news_center_01_right">
+        <div>
+            <a href="http://www.heatecchina.com/HEATEC15/Home/lang-simp/Information.aspx" target="_blank"><img src="/Content/images/news/news02.jpg" width="298" height="231"></a>
+            <a href="@Url.Action("List", "News", new { category=178})"><img src="/Content/images/tj.gif" width="293" height="91" class="tu_top"></a>
+        </div>
+        <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13" />关注热点</div>
+
+        <div id="jwen_gz">
+            <ul>
+                @Html.Action("Hot")
+            </ul>
+        </div>
+
+        <!--开始-->
+        @Html.Action("Right", new {category=Model.CurrentCategory })
+        <!--结束-->
+    </div>
+    <div class="clear"></div>
+</div>

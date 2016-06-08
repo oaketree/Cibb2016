@@ -1,0 +1,48 @@
+﻿@model Cibb.Web.BLL.Model.ViewModels<Cibb.Web.Contract.Model.BranchMember>
+@{
+    ViewBag.Title = "分会会员-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/staticcss")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/staticjs")
+}
+
+<div id="kj_static_01">
+    @Html.Action("Left")
+    <div id="static_right">
+        <div class="mentit">中国电器工业协会工业锅炉分会会员列表</div>
+        <div class="lsh_line"></div>
+        <div class="pagination bottomtopkong">
+            <ul>
+                @Html.PageLink(Model.pagingInfo, x => Url.Action("BranchMember", new { page = x }))
+            </ul>
+        </div>
+
+        <div class="mentit02men01"></div>
+
+
+        <div id="jwen_com">
+            <ul>
+                @foreach (var p in Model.data)
+                {
+                    <li><a href="@Url.Action("BranchComapnyDetail", new { id=p.ID})">@p.CompanyName</a></li>
+                }
+            </ul>
+        </div>
+        <div class="mentit02men01"></div>
+        <div class="pagination bottomtopkong">
+            <ul>
+                @Html.PageLink(Model.pagingInfo, x => Url.Action("BranchMember", new { page = x }))
+            </ul>
+        </div>
+
+    </div>
+</div>

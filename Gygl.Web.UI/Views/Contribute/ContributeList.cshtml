@@ -1,0 +1,213 @@
+﻿@{
+    ViewBag.Title = "我的稿件";
+}
+@section Css{
+    @Styles.Render("~/Content/contributecss")
+}
+@section hscripts{
+    @Scripts.Render("~/bundles/angular")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/contribute")
+}
+@section Header{
+    @Html.Action("Header", "Home")
+}
+<div id="q_top05">
+    <div id="m_top05">
+        <div id="top05">
+            <div class="center_zhuti"></div>
+            <div id="magatgbt">
+                <div><img src="/Content/images/magazinetg1.gif" width="134" height="31"></div>
+                <div class="magatgbt_tgbutton"><a href="@Url.Action("AddContribute")">我要投稿&nbsp;></a></div>
+                <div class="magatgbt_tgtj">（您共投稿<span class="xing"> 8 </span>篇，其中<span class="xing"> 2 </span>篇处于审稿中）</div>
+            </div>
+            <div class="bgcolor01">
+                <div class="bgcolor02"></div>
+            </div>
+            <div class="tglie tglieline" id="con_test">
+                <div>
+                    <div class="tglitijiao">已提交</div>
+                    <div class="tgbti tgbti_wid">浅谈逆推倾斜炉排技术在垃圾焚烧中的应用浅谈逆推倾斜炉排技术在垃圾焚烧中的应用</div>
+                </div>
+                <div>
+                    <div class="magatgbt_bh">编号：S1634</div>
+                    <div class="maxg">稿件待修改（2016.01.12）</div>
+                    <div class="maxg02">投稿日期：2015-12-09</div>
+                    <div class="tgliebutton">
+                        <ul>
+                            <li><a href="#" class="buttonbutton button-primary button-rounded button-tiny isread-text">审稿进度</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">删除</a></li>
+                            <li><a href="/Views/Submission/subtributexg.asp" class=" buttonbutton button-rounded button-tiny">补充修改</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tglie tglieline">
+                <div>
+                    <div class="tglitijiaowei">未提交</div>
+                    <div class="tgbti tgbti_wid">浅谈逆推倾斜炉排技术在垃圾焚烧中的应用</div>
+                </div>
+                <div>
+                    <div class="magatgbt_bh">编号：暂无</div>
+                    <div class="maxg">稿件未提交（2016.01.12）</div>
+                    <div class="maxg02">投稿日期：未投稿</div>
+                    <div class="tgliebutton">
+                        <ul>
+                            <li><a href="#" class="buttonbutton button-primary button-rounded button-tiny isread-text">提交</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">删除</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">编辑</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tglie tglieline">
+                <div>
+                    <div class="tglitijiao">已提交</div>
+                    <div class="tgbti tgbti_wid">浅谈逆推倾斜炉排技术在垃圾焚烧中的应用</div>
+                </div>
+                <div>
+                    <div class="magatgbt_bh">编号：S1634</div>
+                    <div class="maxg">稿件待修改（2016.01.12）</div>
+                    <div class="maxg02">投稿日期：2015-12-09</div>
+                    <div class="tgliebutton">
+                        <ul>
+                            <li><a href="#" class="buttonbutton button-primary button-rounded button-tiny isread-text">审稿进度</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">删除</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">补充修改</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tglie tglieline">
+                <div>
+                    <div class="tglitijiao">已提交</div>
+                    <div class="tgbti tgbti_wid">浅谈逆推倾斜炉排技术在垃圾焚烧中的应用</div>
+                </div>
+                <div>
+                    <div class="magatgbt_bh">编号：S1634</div>
+                    <div class="maxg">稿件待修改（2016.01.12）</div>
+                    <div class="maxg02">投稿日期：2015-12-09</div>
+                    <div class="tgliebutton">
+                        <ul>
+                            <li><a href="#" class="buttonbutton button-primary button-rounded button-tiny isread-text">审稿进度</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">删除</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">补充修改</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tglie tglieline">
+                <div>
+                    <div class="tglitijiaowei">未提交</div>
+                    <div class="tgbti tgbti_wid">浅谈逆推倾斜炉排技术在垃圾焚烧中的应用</div>
+                </div>
+                <div>
+                    <div class="magatgbt_bh">编号：暂无</div>
+                    <div class="maxg">稿件未提交（2016.01.12）</div>
+                    <div class="maxg02">投稿日期：未投稿</div>
+                    <div class="tgliebutton">
+                        <ul>
+                            <li><a href="#" class="buttonbutton button-primary button-rounded button-tiny">提交</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">删除</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">编辑</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tglie tglieline">
+                <div>
+                    <div class="tglitijiao">已提交</div>
+                    <div class="tgbti tgbti_wid">浅谈逆推倾斜炉排技术在垃圾焚烧中的应用</div>
+                </div>
+                <div>
+                    <div class="magatgbt_bh">编号：S1634</div>
+                    <div class="maxg">稿件待修改（2016.01.12）</div>
+                    <div class="maxg02">投稿日期：2015-12-09</div>
+                    <div class="tgliebutton">
+                        <ul>
+                            <li><a href="#" class="buttonbutton button-primary button-rounded button-tiny isread-text">审稿进度</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">删除</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">补充修改</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="tglie tglieline">
+                <div>
+                    <div class="tglitijiao">已提交</div>
+                    <div class="tgbti">浅谈逆推倾斜炉排技术在垃圾焚烧中的应用</div>
+
+                </div>
+
+
+                <div>
+                    <div class="magatgbt_bh">编号：S1634</div>
+                    <div class="maxg">稿件待修改（2016.01.12）</div>
+                    <div class="maxg02">投稿日期：2015-12-09</div>
+                    <div class="tgliebutton">
+                        <ul>
+
+                            <li><a href="#" class="buttonbutton button-primary button-rounded button-tiny isread-text">审稿进度</a></li>
+
+
+
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">删除</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">补充修改</a></li>
+
+
+                        </ul>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+            <div class="tglie tglieline">
+                <div>
+                    <div class="tglitijiao">已提交</div>
+                    <div class="tgbti">浅谈逆推倾斜炉排技术在垃圾焚烧中的应用</div>
+
+                </div>
+
+
+                <div>
+                    <div class="magatgbt_bh">编号：S1634</div>
+                    <div class="maxg">稿件待修改（2016.01.12）</div>
+                    <div class="maxg02">投稿日期：2015-12-09</div>
+                    <div class="tgliebutton">
+                        <ul>
+
+                            <li><a href="#" class="buttonbutton button-primary button-rounded button-tiny isread-text">审稿进度</a></li>
+
+
+
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">删除</a></li>
+                            <li><a href="#" class=" buttonbutton button-rounded button-tiny">补充修改</a></li>
+
+
+                        </ul>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+            <div class="nextpagelie"><img src="/Content/images/buttontemp2.gif" width="201" height="31" /></div>
+
+            <div class="line"></div>
+            <div class="tgts">投稿流程提示：您好，在您保存投稿后，请确认您的信息填写正确，最后进行提交，提交后才算正式完成投稿。</div>
+        </div>
+        <div id="zhushi" class="zstoppad">注：<span class="xing">删除稿件并非撤稿</span>，如需撤稿请电话联系编辑部（021-51020808-5117）。一般自投稿日起7个工作日内（节假日除外）您将收到收稿通知，如您未收到，请联系编辑部。<span class="xing">投稿</span><span class="xing">文章请以word格式发送，别的格式无法刊登录用。</span>投稿咨询：（021）51020808-5112。</div>
+    </div>
+</div>
+
+

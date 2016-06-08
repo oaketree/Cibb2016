@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5BD3F212-277A-4F04-8ECD-319051C1C3F0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cibb.Web.UI2</RootNamespace>
+    <AssemblyName>Cibb.Web.UI2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Forum\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Forum\Controllers\RegistrationController.cs" />
+    <Compile Include="Areas\Forum\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
+    <Compile Include="Controllers\CouncilController.cs" />
+    <Compile Include="Controllers\FriendLinkController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\index_css1.css" />
+    <Content Include="Content\css\luntancss.css" />
+    <Content Include="Content\css\news.css" />
+    <Content Include="Content\css\static.css" />
+    <Content Include="Content\css\zzsc.css" />
+    <Content Include="Content\images\bt02.gif" />
+    <Content Include="Content\images\buttom01.gif" />
+    <Content Include="Content\images\buttom02.gif" />
+    <Content Include="Content\images\dh_01.png" />
+    <Content Include="Content\images\dh_02.png" />
+    <Content Include="Content\images\dh_03.png" />
+    <Content Include="Content\images\dh_04.png" />
+    <Content Include="Content\images\dh_05.png" />
+    <Content Include="Content\images\dh_06.png" />
+    <Content Include="Content\images\dh_07.png" />
+    <Content Include="Content\images\dh_08.png" />
+    <Content Include="Content\images\dh_09.png" />
+    <Content Include="Content\images\dot02.gif" />
+    <Content Include="Content\images\down.gif" />
+    <Content Include="Content\images\dt\dt01.gif" />
+    <Content Include="Content\images\dt\dt02.gif" />
+    <Content Include="Content\images\dt\dt03.gif" />
+    <Content Include="Content\images\dt\dt04.gif" />
+    <Content Include="Content\images\dt\dt05.gif" />
+    <Content Include="Content\images\dt\dt06.gif" />
+    <Content Include="Content\images\dt\dt07.gif" />
+    <Content Include="Content\images\dt\dt08.gif" />
+    <Content Include="Content\images\dt\dt09.jpg" />
+    <Content Include="Content\images\dt\dt10.jpg" />
+    <Content Include="Content\images\fenhui01.jpg" />
+    <Content Include="Content\images\fenhui02.jpg" />
+    <Content Include="Content\images\fenhui03.jpg" />
+    <Content Include="Content\images\fenhui04.jpg" />
+    <Content Include="Content\images\fenhui05.jpg" />
+    <Content Include="Content\images\fenhui06.jpg" />
+    <Content Include="Content\images\forum\bg01.gif" />
+    <Content Include="Content\images\forum\biaoti.gif" />
+    <Content Include="Content\images\forum\biaoti.png" />
+    <Content Include="Content\images\forum\bottom.gif" />
+    <Content Include="Content\images\forum\bt01.gif" />
+    <Content Include="Content\images\forum\button01.gif" />
+    <Content Include="Content\images\forum\downppt.jpg" />
+    <Content Include="Content\images\forum\liaojie.gif" />
+    <Content Include="Content\images\forum\luncengter01.jpg" />
+    <Content Include="Content\images\forum\luntanbeij.jpg" />
+    <Content Include="Content\images\forum\luntit.gif" />
+    <Content Include="Content\images\forum\luntopimg.jpg" />
+    <Content Include="Content\images\forum\mt04.gif" />
+    <Content Include="Content\images\forum\mt05.gif" />
+    <Content Include="Content\images\forum\mt07.gif" />
+    <Content Include="Content\images\forum\prejb.jpg" />
+    <Content Include="Content\images\forum\pretit.jpg" />
+    <Content Include="Content\images\forum\prezy.jpg" />
+    <Content Include="Content\images\forum\xc01.jpg" />
+    <Content Include="Content\images\forum\xc02.jpg" />
+    <Content Include="Content\images\forum\xc03.jpg" />
+    <Content Include="Content\images\forum\xc04.jpg" />
+    <Content Include="Content\images\forum\xc05.jpg" />
+    <Content Include="Content\images\forum\xc06.jpg" />
+    <Content Include="Content\images\forum\xc07.jpg" />
+    <Content Include="Content\images\forum\xc08.jpg" />
+    <Content Include="Content\images\forum\xiazai.gif" />
+    <Content Include="Content\images\forum\zhanhui.gif" />
+    <Content Include="Content\images\forum\zhuti.gif" />
+    <Content Include="Content\images\forum\zj_temp.jpg" />
+    <Content Include="Content\images\forum\zti.jpg" />
+    <Content Include="Content\images\gjlt.gif" />
+    <Content Include="Content\images\knowledge\bai00.gif" />
+    <Content Include="Content\images\knowledge\bg01.jpg" />
+    <Content Include="Content\images\knowledge\bg02.gif" />
+    <Content Include="Content\images\knowledge\bg14.gif" />
+    <Content Include="Content\images\knowledge\hang_01.jpg" />
+    <Content Include="Content\images\knowledge\hang_02.jpg" />
+    <Content Include="Content\images\knowledge\hang_03.jpg" />
+    <Content Include="Content\images\knowledge\hang_04.jpg" />
+    <Content Include="Content\images\knowledge\hang_05.jpg" />
+    <Content Include="Content\images\knowledge\hang_06.gif" />
+    <Content Include="Content\images\knowledge\hang_06.jpg" />
+    <Content Include="Content\images\knowledge\hang_07.gif" />
+    <Content Include="Content\images\knowledge\hang_07.jpg" />
+    <Content Include="Content\images\knowledge\hang_08.jpg" />
+    <Content Include="Content\images\knowledge\hang_09.gif" />
+    <Content Include="Content\images\knowledge\index069.gif" />
+    <Content Include="Content\images\knowledge\kn_01.gif" />
+    <Content Include="Content\images\knowledge\kn_02.gif" />
+    <Content Include="Content\images\knowledge\kn_03.gif" />
+    <Content Include="Content\images\knowledge\kn_04.gif" />
+    <Content Include="Content\images\knowledge\kn_05.gif" />
+    <Content Include="Content\images\knowledge\kn_06.gif" />
+    <Content Include="Content\images\knowledge\kn_07.gif" />
+    <Content Include="Content\images\knowledge\kn_08.gif" />
+    <Content Include="Content\images\knowledge\kn_09.gif" />
+    <Content Include="Content\images\knowledge\kn_10.gif" />
+    <Content Include="Content\images\knowledge\kn_11.gif" />
+    <Content Include="Content\images\knowledge\kn_12.gif" />
+    <Content Include="Content\images\knowledge\kn_13.gif" />
+    <Content Include="Content\images\knowledge\kn_14.gif" />
+    <Content Include="Content\images\knowledge\kn_15.gif" />
+    <Content Include="Content\images\knowledge\kn_16.gif" />
+    <Content Include="Content\images\knowledge\kn_17.gif" />
+    <Content Include="Content\images\knowledge\kn_18.gif" />
+    <Content Include="Content\images\knowledge\kn_19.gif" />
+    <Content Include="Content\images\knowledge\kn_20.gif" />
+    <Content Include="Content\images\knowledge\kn_21.gif" />
+    <Content Include="Content\images\knowledge\kn_22.gif" />
+    <Content Include="Content\images\knowledge\kn_23.gif" />
+    <Content Include="Content\images\knowledge\kn_24.gif" />
+    <Content Include="Content\images\knowledge\kn_25.gif" />
+    <Content Include="Content\images\knowledge\kn_26.gif" />
+    <Content Include="Content\images\knowledge\kn_27.gif" />
+    <Content Include="Content\images\knowledge\kn_28.gif" />
+    <Content Include="Content\images\knowledge\kn_29.gif" />
+    <Content Include="Content\images\knowledge\kn_30.gif" />
+    <Content Include="Content\images\knowledge\kn_31.gif" />
+    <Content Include="Content\images\knowledge\kn_32.gif" />
+    <Content Include="Content\images\knowledge\kn_33.gif" />
+    <Content Include="Content\images\knowledge\kn_34.gif" />
+    <Content Include="Content\images\knowledge\kn_35.gif" />
+    <Content Include="Content\images\knowledge\kn_36.gif" />
+    <Content Include="Content\images\knowledge\kn_37.gif" />
+    <Content Include="Content\images\knowledge\kn_38.gif" />
+    <Content Include="Content\images\knowledge\kn_39.gif" />
+    <Content Include="Content\images\knowledge\kn_40.gif" />
+    <Content Include="Content\images\knowledge\kn_41.gif" />
+    <Content Include="Content\images\knowledge\kn_42.gif" />
+    <Content Include="Content\images\knowledge\kn_43.gif" />
+    <Content Include="Content\images\knowledge\kn_44.gif" />
+    <Content Include="Content\images\knowledge\kn_45.gif" />
+    <Content Include="Content\images\knowledge\kn_46.gif" />
+    <Content Include="Content\images\knowledge\kn_47.gif" />
+    <Content Include="Content\images\knowledge\kn_48.gif" />
+    <Content Include="Content\images\knowledge\kn_49.gif" />
+    <Content Include="Content\images\knowledge\kn_50.gif" />
+    <Content Include="Content\images\knowledge\kn_51.gif" />
+    <Content Include="Content\images\knowledge\kn_52.gif" />
+    <Content Include="Content\images\knowledge\kn_53.gif" />
+    <Content Include="Content\images\knowledge\kn_54.gif" />
+    <Content Include="Content\images\knowledge\kn_55.gif" />
+    <Content Include="Content\images\knowledge\kn_56.gif" />
+    <Content Include="Content\images\knowledge\kn_56_2.gif" />
+    <Content Include="Content\images\knowledge\kn_57.gif" />
+    <Content Include="Content\images\knowledge\kn_57_2.gif" />
+    <Content Include="Content\images\knowledge\kn_58.gif" />
+    <Content Include="Content\images\knowledge\kn_58_2.gif" />
+    <Content Include="Content\images\knowledge\kn_59.gif" />
+    <Content Include="Content\images\knowledge\kn_59_2.gif" />
+    <Content Include="Content\images\knowledge\kn_60.gif" />
+    <Content Include="Content\images\knowledge\kn_60_2.gif" />
+    <Content Include="Content\images\knowledge\kn_61.gif" />
+    <Content Include="Content\images\knowledge\kn_61_2.gif" />
+    <Content Include="Content\images\knowledge\kn_62.gif" />
+    <Content Include="Content\images\knowledge\kn_62_2.gif" />
+    <Content Include="Content\images\knowledge\kn_63.gif" />
+    <Content Include="Content\images\knowledge\kn_64.gif" />
+    <Content Include="Content\images\knowledge\kn_65.gif" />
+    <Content Include="Content\images\knowledge\kn_65_2.gif" />
+    <Content Include="Content\images\knowledge\kn_965.jpg" />
+    <Content Include="Content\images\knowledge\kn_temp01.gif" />
+    <Content Include="Content\images\knowledge\temp136.gif" />
+    <Content Include="Content\images\knowledge\top01.swf" />
+    <Content Include="Content\images\knowledge\xiehui.gif" />
+    <Content Include="Content\images\ld01.jpg" />
+    <Content Include="Content\images\ld02.jpg" />
+    <Content Include="Content\images\ld03.jpg" />
+    <Content Include="Content\images\ld04.jpg" />
+    <Content Include="Content\images\lt.gif" />
+    <Content Include="Content\images\news\1.jpg" />
+    <Content Include="Content\images\news\2.jpg" />
+    <Content Include="Content\images\news\3.jpg" />
+    <Content Include="Content\images\news\4.jpg" />
+    <Content Include="Content\images\news\5.jpg" />
+    <Content Include="Content\images\news\6.jpg" />
+    <Content Include="Content\images\news\7.jpg" />
+    <Content Include="Content\images\news\8.jpg" />
+    <Content Include="Content\images\news\blank.gif" />
+    <Content Include="Content\images\news\track.gif" />
+    <Content Include="Content\images\px.gif" />
+    <Content Include="Content\images\rh.gif" />
+    <Content Include="Content\images\temp01.jpg" />
+    <Content Include="Content\images\tit01.gif" />
+    <Content Include="Content\images\tit02.gif" />
+    <Content Include="Content\images\tit03.gif" />
+    <Content Include="Content\images\tit04.gif" />
+    <Content Include="Content\images\tit06.gif" />
+    <Content Include="Content\images\tj.gif" />
+    <Content Include="Content\images\tjfx.gif" />
+    <Content Include="Content\images\tt01.jpg" />
+    <Content Include="Content\images\txxz.gif" />
+    <Content Include="Content\images\txxz.png" />
+    <Content Include="Content\images\wx.gif" />
+    <Content Include="Content\images\xh04.gif" />
+    <Content Include="Content\images\xh05.gif" />
+    <Content Include="Content\images\xhgh.gif" />
+    <Content Include="Content\images\xh_01.jpg" />
+    <Content Include="Content\images\xh_02.gif" />
+    <Content Include="Content\images\xh_03.gif" />
+    <Content Include="Content\images\xh_bubg.gif" />
+    <Content Include="Content\images\xh_bubg02.gif" />
+    <Content Include="Content\images\xh_bubg_02.gif" />
+    <Content Include="Content\images\xh_zh01.gif" />
+    <Content Include="Content\images\xh_zh02.gif" />
+    <Content Include="Content\images\zh02.gif" />
+    <Content Include="Content\images\zhbu01.gif" />
+    <Content Include="Content\images\zhbu02.gif" />
+    <Content Include="Content\images\zhbu03.gif" />
+    <Content Include="Content\images\zhbu05.gif" />
+    <Content Include="Content\images\zhbu06.gif" />
+    <Content Include="Content\images\zh_02.gif" />
+    <Content Include="Content\images\zh_03.gif" />
+    <Content Include="Content\images\zh_04.gif" />
+    <Content Include="Content\Scripts\bootstrap.js" />
+    <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Forum\Views\Web.config" />
+    <Content Include="Areas\Forum\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Forum\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\Home\Bottom.cshtml" />
+    <Content Include="Areas\Forum\Views\Home\Top.cshtml" />
+    <Content Include="Areas\Forum\Views\Home\Media.cshtml" />
+    <Content Include="Areas\Forum\Views\Home\Contact.cshtml" />
+    <Content Include="Areas\Forum\Views\Home\Organizor.cshtml" />
+    <Content Include="Areas\Forum\Views\Registration\Register.cshtml" />
+    <Content Include="Areas\Forum\Views\Registration\Login.cshtml" />
+    <Content Include="Areas\Forum\Views\Report\Detail.cshtml" />
+    <Content Include="Areas\Forum\Views\Registration\SendEmail.cshtml" />
+    <Content Include="Areas\Forum\Views\Registration\Activate.cshtml" />
+    <Content Include="Areas\Forum\Views\Registration\ReSendEmail.cshtml" />
+    <Content Include="Areas\Forum\Views\Report\ReportList.cshtml" />
+    <Content Include="Areas\Forum\Views\Report\ReportListDetail.cshtml" />
+    <Content Include="Areas\Forum\Views\Home\Keynote.cshtml" />
+    <Content Include="Areas\Forum\Views\Home\Special.cshtml" />
+    <Content Include="Areas\Forum\Views\Report\PreviousList.cshtml" />
+    <Content Include="Areas\Forum\Views\Report\Previous.cshtml" />
+    <Content Include="Areas\Forum\Views\Registration\ErrorEmail.cshtml" />
+    <None Include="Content\Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Content\Scripts\common.js" />
+    <Content Include="Content\Scripts\jquery-1.10.2.js" />
+    <Content Include="Content\Scripts\jquery-1.10.2.min.js" />
+    <None Include="Content\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Content\Scripts\jquery.validate.js" />
+    <Content Include="Content\Scripts\jquery.validate.min.js" />
+    <Content Include="Content\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\Scripts\respond.js" />
+    <Content Include="Content\Scripts\respond.min.js" />
+    <None Include="Content\Scripts\_references.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\images\knowledge\top01.fla" />
+    <Content Include="Content\Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Top.cshtml" />
+    <Content Include="Views\Home\Bottom.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\News\Communication.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\News\Detail.Mobile.cshtml" />
+    <Content Include="Views\News\Hot.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\List.cshtml" />
+    <Content Include="Views\News\NewsAllForHome.cshtml" />
+    <Content Include="Views\News\NewsImageForHome.cshtml" />
+    <Content Include="Views\News\NewsWithoutPicture.cshtml" />
+    <Content Include="Views\News\NewsWithPicture.cshtml" />
+    <Content Include="Views\News\Right.cshtml" />
+    <Content Include="Views\News\RightList.cshtml" />
+    <Content Include="Views\News\TitleListForHome.cshtml" />
+    <Content Include="Views\Council\BranchComapnyDetail.cshtml" />
+    <Content Include="Views\Council\BranchCompany.cshtml" />
+    <Content Include="Views\Council\BranchDirector.cshtml" />
+    <Content Include="Views\Council\BranchMember.cshtml" />
+    <Content Include="Views\Council\Contact.cshtml" />
+    <Content Include="Views\Council\Convention.cshtml" />
+    <Content Include="Views\Council\CouncilDetail.cshtml" />
+    <Content Include="Views\Council\Institution.cshtml" />
+    <Content Include="Views\Council\Introduction.cshtml" />
+    <Content Include="Views\Council\Left.cshtml" />
+    <Content Include="Views\Council\LiuZhenDuo.cshtml" />
+    <Content Include="Views\Council\MembershipFeeManagement.cshtml" />
+    <Content Include="Views\Council\MembershipManagement.cshtml" />
+    <Content Include="Views\Council\Person.cshtml" />
+    <Content Include="Views\Council\Regulations.cshtml" />
+    <Content Include="Views\Council\ShenXin.cshtml" />
+    <Content Include="Views\Council\WangShanWu.cshtml" />
+    <Content Include="Views\FriendLink\CompanyForHome.cshtml" />
+    <Content Include="Views\FriendLink\PeopleForHome.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout.Mobile.cshtml" />
+    <None Include="Properties\PublishProfiles\cibb2015810.pubxml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\News\MenuAsync.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\files\" />
+    <Folder Include="Content\upload\forum\files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cibb.Core.Utility\Cibb.Core.Utility.csproj">
+      <Project>{80913b09-ff7e-4549-bd73-51107423785c}</Project>
+      <Name>Cibb.Core.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cibb.Web.BLL\Cibb.Web.BLL.csproj">
+      <Project>{1099f994-0ba5-4bcf-b51a-691fcfba02dd}</Project>
+      <Name>Cibb.Web.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cibb.Web.Contract\Cibb.Web.Contract.csproj">
+      <Project>{8c81fc54-8a98-4d48-a6f7-60ae813fc85e}</Project>
+      <Name>Cibb.Web.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cibb.Web\Cibb.Web.csproj">
+      <Project>{24b0cc44-a08e-4a7c-b3ff-2eaa80077122}</Project>
+      <Name>Cibb.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49881</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49881/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

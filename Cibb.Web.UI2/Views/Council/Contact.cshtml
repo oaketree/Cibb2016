@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "联系我们-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/staticcss")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/staticjs")
+}
+<div id="kj_static_01">
+    @Html.Action("Left")
+    <div id="static_right">
+
+        <div class="static_wen01">
+            中国电器工业协会工业锅炉分会<br />
+            Welcome to become membership of Industrial<br />
+            Boiler Branch Of China Electrical Equipment<br />
+            Industry Association(CIBB)
+        </div>
+        <div>
+            <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+                    <tr>
+                      <td width="15%" height="25" align="center" bgcolor="#FFFFFF">联系人：</td>
+                      <td width="35%" bgcolor="#FFFFFF">&nbsp; 周苇</td>
+                      <td align="center" bgcolor="#FFFFFF">&nbsp;</td>
+                      <td width="35%" bgcolor="#FFFFFF">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td height="25" align="center" bgcolor="#FFFFFF">电&nbsp; 话：</td>
+                      <td bgcolor="#FFFFFF">&nbsp; 021-51020808-5103</td>
+                      <td align="center" bgcolor="#FFFFFF">传&nbsp; 真：</td>
+                      <td bgcolor="#FFFFFF">&nbsp; 021-51803299</td>
+                    </tr>
+                    <tr>
+                      <td height="25" align="center" bgcolor="#FFFFFF">邮&nbsp; 箱：</td>
+                      <td bgcolor="#FFFFFF">&nbsp; <a href="mailto:glxh09@163.com">glxh09@163.com</a><a href="mailto:bzwzlj@gmail.com"></a></td>
+                      <td align="center" bgcolor="#FFFFFF">&nbsp;</td>
+                      <td bgcolor="#FFFFFF">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td height="25" align="center" bgcolor="#FFFFFF">地&nbsp; 址：</td>
+                      <td bgcolor="#FFFFFF">&nbsp; 上海闸北区宝昌路297号</td>
+                      <td align="center" bgcolor="#FFFFFF">邮&nbsp; 编：</td>
+                      <td bgcolor="#FFFFFF">&nbsp; 200071</td>
+                    </tr>
+                </table>
+        </div>
+        <div>
+           <p> <br /><span style="font-weight: bold">欢迎加入</span>中国电器工业协会工业锅炉分会</p>
+                   <p>Welcome to become membership of Industrial Boiler Branch Of China Electrical Equipment Industry Association (CIBB)</p>
+                  <p>•请贵单位申请入会前仔细阅读中国电器工业协会工业锅炉分会简介和中国电器工业协会工业锅炉分会工作条例；</p>
+                     <p>Please read carefully &lt;Brief Introduction of CIBB&gt; and &lt;industrial Boiler Branch of China Electrical Equipment Industry Association Work Ordinances&gt; before you make decision to apply for the membership qualification；</p>
+                  <p>•申请入会和受理程序按中国电器工业协会工业锅炉分会会籍管理办法。凡取得会员资格的单位按中国电器工业协会工业锅炉分会会费管理办法缴纳相应费用； </p>
+                    <p>As to the procedures concerning application and application accepting or refusing，Please refer to Industrial Boiler Branch of China Electrical Equipment Industry Association Membership Registration Administration．Membership companies should pay dues according to Industrial Boiler Branch of China Electrical Equipment Industry Association Membership Dues Administration；</p>
+                  <p>•凡愿申请入会的单位也可通过“中国电器工业协会工业锅炉分会网站：www.cibb.net.cn”浏览本简章的相关内容，并可通过网站下载“<a href="@Url.Action("ApplicationForm", new { fileName = "入会申请表.docx" })">入会申请表</a>”； </p>
+                     <p>Work Ordinances is also available on the website: “www.cibb.net.cn”.  CIBB Membership Application Form could be downloaded from the website. </p>
+                  <p>•未尽事宜，敬请向中国电器工业协会工业锅炉分会秘书处垂询(联系方式见上)。</p>
+                     <p>If you have any questions，please don't hesitate to inquire to the Secretariat of Industrial Boiler Branch of China Electrical Equipment Industry Association(please refer to back cover for detailed contact information)。
+                  </p>
+
+        </div>
+    </div>
+</div>
+
+

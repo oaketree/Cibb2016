@@ -1,0 +1,3 @@
+﻿@model Cibb.Web.BLL.Model.Link
+@Html.ActionLink(Model.title, "Detail", new { id = Model.linkid }, new {target="_blank" })
+<a href="@Url.Action("Detail", new { id=Model.linkid})" target="_blank"><img src="/Content/images/down.gif" width="17" height="16" /></a>

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 锅炉网管理系统</title>
+    <style>
+        html {
+            overflow-x: hidden;
+        }
+    </style>
+    @Styles.Render("~/Content/css/member.css","~/Content/css/easyui.css", "~/Content/css/icon.css")
+    @RenderSection("css", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryuno")
+    @Scripts.Render("~/Content/scripts/jquery.easyui.min.js")
+    @Scripts.Render("~/bundles/cms")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

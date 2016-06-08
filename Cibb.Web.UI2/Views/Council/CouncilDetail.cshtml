@@ -1,0 +1,33 @@
+﻿@model Cibb.Web.Contract.Model.BranchMember
+@{
+    ViewBag.Title = "理事会公司详细-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/staticcss")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/staticjs")
+}
+<div id="kj_static_01">
+    @Html.Action("Left")
+    <div id="static_right">
+        <div id="lsh_dh">
+            <div><img src="/Content/images/lsh01.gif" width="121" height="29" /></div>
+            <div id="lsh_dh02">
+                <div><a href="@Url.Action("BranchDirector")"><img src="/Content/images/lsh02_02.gif" width="85" height="31" /></a></div>
+                <div><img src="/Content/images/lsh03.gif" width="21" height="31" /></div>
+                <div><a href="@Url.Action("BranchCompany")"><img src="/Content/images/lsh04_01.gif" width="73" height="31" /></a></div>
+            </div>
+        </div>
+        <div class="lsh_line"></div>
+        <div class="mentit">@Model.CompanyName</div>
+        <div>@Html.Raw(Model.CompanySummary)</div>
+       
+    </div>
+</div>

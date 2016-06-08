@@ -1,0 +1,108 @@
+﻿@section css{
+    @Styles.Render("/Content/css/webuploader.css")
+}
+@section scripts{
+    @Scripts.Render("/Content/scripts/webuploader.min.js")
+}
+
+
+<div id="uploader">
+    <div id="thelist"></div>
+    <div class="btns">
+        <div id="picker">选择文件</div>
+        <button id="ctlBtn" class="btn">开始上传</button>
+    </div>
+    <div id="imglist" style="display:none"><ul><li><div><input id="begin" type="button" value="开始排序" /></div><div><input id="end" type="button" value="结束排序" /></div></li>@*<li><div><img src="" alt="" width="80" height="80" /></div><div><input id="del1" type="button" value="删除图片" /></div></li>*@</ul></div>
+    <input id="shaT" type="text" />
+    <div id="sha"></div>
+    <input id="shaB" type="button" value="256测试" />
+
+</div>
+
+
+<script>
+    $(function () {
+
+        $('#shaB').click(function () {
+            $.post('@Url.Action("getsha")', { a: $("#shaT").val() }, function (data) {
+                $("#sha").text(data);
+            })
+        })
+
+        var $list = $('#thelist'),
+        $btn = $('#ctlBtn'),
+        state = 'pending',
+        uploader;
+        uploader = WebUploader.create({
+            resize: false,
+            server: '@Url.Action("JsonFileUpload")',
+            pick: '#picker',
+            compress:null
+        });
+
+        uploader.options.formData = { 'sortID': uploader.getStats().successNum };
+        // 当有文件添加进来的时候
+        uploader.on('fileQueued', function (file) {
+            $list.append('<div id="' + file.id + '" class="preupload">' + file.name + '<span class="pro"></span><span class="state">&nbsp;等待上传...</span></div>');
+            $('#' + file.id).on('click', function () {
+                uploader.removeFile(file, true);
+                $(this).remove();
+            })
+        });
+
+       
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id);
+            var $percent = $li.find('#progressBar');
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<progress id="progressBar" value="0" max="100"></progress>').appendTo($li.find('span.pro')).find('#progressBar');
+            }
+            $li.find('span.state').text('上传中');
+            $percent.val(percentage * 100);
+        });
+
+
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('#progressBar').fadeOut();
+        });
+
+        uploader.on('uploadSuccess', function (file) {
+            $('#' + file.id).remove();
+        });
+
+        uploader.on('uploadError', function (file) {
+            $('#' + file.id).find('span.state').text('上传出错');
+        });
+
+        //所有文件上传完成后触发等数据库部分完成后加入
+        //uploader.on('uploadFinished', function () {
+        //    $.post();
+        //});
+        
+
+        uploader.on('all', function (type) {
+            if (type === 'startUpload') {
+                state = 'uploading';
+            } else if (type === 'stopUpload') {
+                state = 'paused';
+            } else if (type === 'uploadFinished') {
+                state = 'done';
+            }
+            if (state === 'uploading') {
+                $btn.text('暂停上传');
+            } else {
+                $btn.text('开始上传');
+            }
+        });
+
+        $btn.on('click', function () {
+            if (state === 'uploading') {
+                uploader.stop();
+            } else {
+                uploader.upload();
+            }
+        });
+    })
+</script>

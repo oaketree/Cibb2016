@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "理事会领导-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/staticcss")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/staticjs")
+}
+
+<div id="kj_static_01">
+    @Html.Action("Left")
+    <div id="static_right">
+        <div id="lsh_dh">
+            <div><img src="../Content/images/lsh01.gif" width="121" height="29" /></div>
+            <div id="lsh_dh02">
+                <div><a href="@Url.Action("BranchDirector")"><img src="../Content/images/lsh02_01.gif" width="85" height="31" /></a></div>
+                <div><img src="../Content/images/lsh03.gif" width="21" height="31" /></div>
+                <div><a href="@Url.Action("BranchCompany")"><img src="../Content/images/lsh04_02.gif" width="73" height="31" /></a></div>
+            </div>
+        </div>
+
+        <div class="lsh_line"></div>
+        <div class="bottomtopkong"></div>
+
+        <div class="lsld">
+            <div class="ldpic"><img src="../Content/images/knowledge/wang.jpg" width="254" height="355" alt="" /></div>
+            <div class="ldnr">
+
+                <div>
+                    <div class="wenzimingld">王善武</div><div class="wenzizhiwuld">秘书长</div><div class="lddanwei">上海工业锅炉研究所副所长</div>
+                </div>
+
+                <div>中共党员，大学本科，工商管理硕士。1987年毕业于江苏工学院机械制造工程系，获学士学位。同年9月进入上海工业锅炉研究所工作至今，先后在机械工业工  业锅炉产品质量监督检测中心、上海工业锅炉研究所行业部、中国电器工业协会工业锅炉分会秘书处从事产品质量检测、产品制造工艺、行业标准、情报等工作。自  1995年7月起先后担任上海工业锅炉研究所行业部副主任、常务副主任、主任、分会秘书长等职。</div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+

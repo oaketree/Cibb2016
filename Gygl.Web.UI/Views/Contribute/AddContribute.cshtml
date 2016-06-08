@@ -1,0 +1,104 @@
+﻿@model Gygl.Web.BLL.Contribute.Models.ContributeViewModel
+@{
+    ViewBag.Title = "在线投稿";
+}
+@section Css{
+    @Styles.Render("~/Content/contributecss")
+}
+@section hscripts{
+    @Scripts.Render("~/bundles/angular")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/contribute")
+}
+@section Header{
+    @Html.Action("Header", "Home")
+}
+@using (Html.BeginForm("AddContribute", "Contribute", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="q_top05">
+        <div id="m_top05">
+            <div id="top05">
+                <div class="center_bjiaoti"></div>
+                <div class="center_zhuti">在线投稿</div>
+                <div class="bgcolor01">
+                    <div class="bgcolor0202"></div>
+                </div>
+                <div class="blankbottom"></div>
+                <div>
+                    <div class="zhuce">
+                        <div class="zczuo">
+                            <label for="login-name">稿件名称：</label>
+                        </div>
+                        <div class="zcyou">@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "文章名称" } })</div>
+                        <div class="zcts"><span class="xing">*</span>&nbsp;@Html.ValidationMessageFor(model => model.Title)</div>
+                    </div>
+                    <div class="zhuce">
+                        <div class="zczuo">
+                            <label for="login-name">作&nbsp; 者：</label>
+                        </div>
+                        <div class="zcyou">@Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control", placeholder = "所有作者名称" } })</div>
+                        <div class="zcts"><span class="xing">*</span>&nbsp;@Html.ValidationMessageFor(model => model.Author)</div>
+                    </div>
+                    <div class="zhuce">
+                        <div class="zczuo">
+                            <label for="login-name">公司名称:</label>
+                        </div>
+                        <div class="zcyou">@Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control", placeholder = "第一作者公司名称" } })</div>
+                        <div class="zcts"><span class="xing">*</span>&nbsp;@Html.ValidationMessageFor(model => model.Company)</div>
+                    </div>
+                    <div class="zhuce">
+                        <div class="zczuo">
+                            <label for="login-name">地&nbsp; 址：</label>
+                        </div>
+                        <div class="zcyou">@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "第一作者联系地址" } })</div>
+                        <div class="zcts"><span class="xing">*</span>&nbsp;@Html.ValidationMessageFor(model => model.Address)</div>
+                    </div>
+                    <div class="zhuce">
+                        <div class="zczuo"><label for="login-name">E-Mail:</label></div>
+                        <div class="zcyou">@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "第一作者E-Mail地址" } })</div>
+                        <div class="zcts"><span class="xing">*</span>&nbsp;@Html.ValidationMessageFor(model => model.Email)</div>
+                    </div>
+                    <div class="zhuce">
+                        <div class="zczuo">
+                            <label for="login-name">邮&nbsp; 编：</label>
+                        </div>
+                        <div class="zcyou">@Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control", placeholder = "第一作者邮编" } })</div>
+                        <div class="zcts"><span class="xing">*</span>&nbsp;@Html.ValidationMessageFor(model => model.ZipCode)</div>
+                    </div>
+                    <div class="zhuce">
+                        <div class="zczuo"><label for="login-name">联系电话：</label></div>
+                        <div class="zcyou">@Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control", placeholder = "第一作者联系电话" } })</div>
+                        <div class="zcts"><span class="xing">*</span>&nbsp;@Html.ValidationMessageFor(model => model.Tel)</div>
+                    </div>
+                    <div class="zhuce" ng-app="myApp" ng-controller="myCtrl">
+                        <div class="zczuo"><label for="login-name">备注：</label></div>
+                        <div class="zcyou"><textarea ng-model="message" cols="35" rows="4" placeholder="如有基金项目或其他重要事项请备注" name="Remark" class="form-control02" maxlength="100"></textarea></div>
+                        <div class="zcts">&nbsp;剩余字数：<span ng-bind="left()"></span></div>
+                    </div>
+                    <div class="topbank"></div>
+                    <div class="zhuce">
+                        <div class="zczuo"><label for="login-name">稿件上传：</label></div>
+                        <div class="zcyou"><input name="FileUpload" id="FileUpload" type="file"></div>
+                        <div class="zcts"><span class="xing">*</span>&nbsp;@Html.ValidationMessageFor(model => model.FileUpload)</div>
+                    </div>
+                    <div class="zcbutton bottom">
+                        <button type="submit" class="btn btn-primary">保&nbsp;存</button>
+                    </div>
+                    <div class="line"></div>
+                    <div>注：<span class="xing">*</span>为必填项，请如实填写以上信息，以便跟您联系文章相关事宜。一般自投稿日起7个工作日内（节假日除外）您将收到收稿通知，如您未收到，请联系编辑部。<span class="xing">投稿</span><span class="xing">文章请以word格式发送，且大小必须小于10M，否则无法录入。</span>投稿咨询：（021）51020808-5112。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.message = "";
+        $scope.left = function () { return 100 - $scope.message.length; };
+    });
+</script>
+

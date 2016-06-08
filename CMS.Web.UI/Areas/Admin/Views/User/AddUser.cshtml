@@ -1,0 +1,61 @@
+﻿@model CMS.BLL.User.Models.UserModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="easyui-panel" title="注册新用户">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>@Html.LabelFor(model => model.UserName)</td>
+                    <td>@Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.UserName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.UserPassword)</td>
+                    <td>@Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.UserPassword)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.DisplayName)</td>
+                    <td>@Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.DisplayName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Email)</td>
+                    <td>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.CompanyName)</td>
+                    <td>@Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.CompanyName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Tel)</td>
+                    <td>@Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Tel)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Address)</td>
+                    <td>@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Address)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Roles)</td>
+                    <td>
+                        @foreach (var item in Model.Roles)
+                        {
+                            <input name="roles" type="checkbox" value="@item.Value" /> @item.Text
+                        }
+                </td>
+            </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Valid)</td>
+                    <td>@Html.DropDownListFor(model => model.Valid, Model.ValidList)</td>
+                </tr>
+
+    </table>
+    <div style="text-align:center;padding:5px">
+        <input type="submit" value="注册" />
+        <input type="reset" value="取消">
+    </div>
+
+</div>
+</div>
+}
+
+

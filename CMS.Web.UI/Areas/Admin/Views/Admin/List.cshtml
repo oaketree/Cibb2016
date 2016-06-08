@@ -1,0 +1,94 @@
+﻿<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()">注册管理员</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="edit()">修改</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="$('#article_list').datagrid('reload');">刷新</a>
+    </div>
+</div>
+
+<table id="article_list"></table>
+<script type="text/javascript">
+    $("#article_list").datagrid({
+        loadMsg: '加载中……',
+        onLoadError: function () {
+            alert('数据加载失败!');
+        },
+        fitColumns: true,
+        url: '@Url.Action("JsonList")',
+        pageSize: 10,
+        pageNumber: 1,
+        pageList: [10, 15, 30],
+        rownumbers: true,
+        columns: [[
+            { field: 'AdminID', title: 'ID', checkbox: true },
+            { field: 'UserName', title: '管理员帐号' },
+            { field: 'DisplayName', title: '真实姓名' },
+            { field: 'Roles', title: '所属角色' },
+            { field: 'LoginTime', title: '登录时间' },
+            { field: 'RegistrationTime', title: '注册时间' },
+            { field: 'LoginIP', title: '登录IP地址' },
+        ]],
+        pagination: true,
+        idField: "AdminID",
+        toolbar: '#toolbar',
+        onDblClickRow: function (rowIndex, rowData) {
+            $.addSubTab("用户修改", "@Url.Action("Edit")/" + rowData.AdminID, "icon-page");
+        }
+    });
+    $('#article_list').datagrid('getPager').pagination({
+        displayMsg: '当前显示从{from}-{to}共{total}记录'
+    });
+    //var p = $('#article_list').datagrid('getPager');
+    //(p).pagination({
+    //    beforePageText: '第',//页数文本框前显示的汉字
+    //    afterPageText: '页    共 {pages} 页',
+    //    displayMsg: '共{total}条数据',
+    //});
+
+    //用户注册
+    function add() {
+        $.addSubTab("注册管理员", "@Url.Action("Register")", "icon-page");
+        return false;
+    }
+    //删除admin
+    function del() {
+        var rows = $("#article_list").datagrid("getSelections");
+        if (!rows || rows.length < 1) {
+            $.messager.alert("提示", "未选择任何行!");
+            return;
+        } else if (rows.length > 0) {
+            $.messager.confirm("确认", "您确定要删除所选行吗？", function (r) {
+                if (r) {
+                    $.messager.progress();
+                    count = 0;
+                    $.each(rows, function (index, value) {
+                        $.post("@Url.Action("JsonDel")", { id: value.AdminID }, function () {
+                            if (++count == rows.length) {
+                                $.messager.progress('close');
+                                rows.length = 0;
+                                $("#article_list").datagrid('reload');
+                            }
+                        });
+                    });
+                }
+            });
+        }
+    }
+    //修改
+    function edit() {
+        var rows = $("#article_list").datagrid("getSelections");
+        if (!rows || rows.length < 1) {
+            $.messager.alert("提示", "未选择任何行!");
+            return;
+        } else if (rows.length != 1) {
+            $.messager.alert("提示", "仅能选择一行!");
+            return;
+        } else {
+            $.addSubTab("用户修改", "@Url.Action("Edit")/" + rows[0].AdminID, "icon-page");
+        }
+    }
+</script>
+
+
+

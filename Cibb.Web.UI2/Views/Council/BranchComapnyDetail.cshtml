@@ -1,0 +1,42 @@
+﻿@model Cibb.Web.Contract.Model.BranchMember
+@{
+    ViewBag.Title = "公司详细-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/staticcss")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/staticjs")
+}
+<div id="kj_static_01">
+    @Html.Action("Left")
+    <div id="static_right">
+        <div class="mentit">@Model.CompanyName</div>
+        <div class="mentit02men01"></div>
+
+
+        <div id="jwen_com_detail">
+            <ul>
+                <li>地&nbsp; 址：</li>
+                <li>@Model.LinkAddress</li>
+                <li>电&nbsp; 话：</li>
+                <li>@Model.LinkTel</li>
+            </ul>
+            <ul>
+                <li>网&nbsp; 址：</li>
+                <li><a href="@Model.CompanyLink" target="_blank">@Model.CompanyLink</a></li>
+                <li>E-Mail:</li>
+                <li>@Model.Email</li>
+            </ul>
+        </div>
+        <div class="memjj">
+          @Html.Raw(Model.CompanySummary)
+        </div>
+    </div>
+</div>

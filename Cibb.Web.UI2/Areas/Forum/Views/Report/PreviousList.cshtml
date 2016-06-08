@@ -1,0 +1,9 @@
+﻿@model List<Cibb.Web.BLL.Reports.Models.LinkTitle>
+@{
+    var index = 0;
+}
+@foreach (var item in Model)
+{
+    index++;
+    <li><a href="@Url.Action("Detail", "Report", new { id=item.linkid})" target="_blank">@index、@item.title——@item.speaker</a></li>
+}

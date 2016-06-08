@@ -1,0 +1,42 @@
+﻿@model CMS.BLL.Admin.Models.RegisterModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="easyui-panel" title="注册管理员">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>@Html.LabelFor(model => model.UserName)</td>
+                    <td>@Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.UserName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.DisplayName)</td>
+                    <td>@Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.DisplayName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Password)</td>
+                    <td>@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Password)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Roles)</td>
+                    <td>@foreach (var item in Model.Roles)
+                    {
+                        <input name="roles" type="checkbox" value="@item.Value" /> @item.Text
+                    }</td>
+                </tr>
+                <tr>
+                    <td>@Html.EditorFor(m => m.TermAccepted)我同意 <a href="#">《用户注册协议》</a>
+                    @Html.ValidationMessageFor(m => m.TermAccepted)</td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="注册" />
+                <input type="reset" value="取消">
+            </div>
+           
+        </div>
+              </div>
+}
+
+

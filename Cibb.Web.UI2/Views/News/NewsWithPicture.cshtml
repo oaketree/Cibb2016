@@ -1,0 +1,13 @@
+﻿@model Cibb.Web.Contract.Model.New
+
+<div class="tu_news">
+    <div class="nei01">
+        <div class="tu_news_pic"><img src='@Url.Content("/Content/upload/news/thumbpic_list/" + Model.pic)' width="180" height="126"></div>
+        <div class="wen_main">
+            <div class="wen_main_title">@Html.ActionLink(Html.Cut(Model.Title, 32), "Detail", new { id = Model.newsid }, new { target = "_blank", title = Model.Title })</div>
+            <div class="wen_main_sour">来源:@Model.InfoFrom&nbsp; @string.Format("{0:f}", Model.RegDate)&nbsp;<span class="font02">@Html.ActionLink(Model.NewsColumn.ColumnName, "List", new {category = Model.ColumnID})</span></div>
+            <div class="wen_main_par"><a href="@Url.Action("Detail", new { id=Model.newsid})">@Html.HtmlClear(Model.Content, 110)</a></div>
+        </div>
+    </div>
+    <div class="news_bg01"></div>
+</div>

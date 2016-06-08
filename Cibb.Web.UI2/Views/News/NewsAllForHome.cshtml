@@ -1,0 +1,12 @@
+﻿@model IQueryable<Cibb.Web.BLL.Model.Link>
+<div id="jwen_center_01_left_01_right_03">@Html.ActionLink(Html.Cut(Model.First().title, 38), "Detail", new { id = Model.First().linkid }, new { target = "_blank", title = Model.First().title })</div>
+<div id="jwen_center_01_left_01_right_04">
+    <ul>
+
+        @foreach (var p in Model.Skip(1))
+        {
+            <li>@Html.ActionLink(Html.Cut(p.title,32), "Detail", new { id = p.linkid }, new { target = "_blank",title=p.title})</li>
+            <li>@p.columnName</li>
+        }
+    </ul>
+</div>

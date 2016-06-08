@@ -1,0 +1,5 @@
+﻿@model IQueryable<Cibb.Web.Contract.Model.FriendLink>
+@foreach (var p in Model)
+{
+    <li><a href='@Url.Content("http://www.china-boiler.net/20years/inside/charactor_pre.aspx?id="+p.LINKID)' target="_blank">@p.LINKNAME @p.LINKNAME2</a></li>
+}

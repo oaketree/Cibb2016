@@ -1,0 +1,122 @@
+﻿<div class="form-inline">
+    <fieldset>
+        <legend>信息查询</legend>
+        <label>角色</label><input id="combo_category" data-options="url:'@Url.Action("JsonRoleTree")'" class="easyui-combotree" />
+        <label>查询</label><input id="textbox_title" class="easyui-textbox" />
+        <label>注册日期</label><input id="datebox_fromdate" type="text" class="easyui-datebox" />-<input id="datebox_todate" type="text" class="easyui-datebox" />
+        <a href="#" id="btn_search" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>
+    </fieldset>
+</div>
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()">注册新用户</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="edit()">修改</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="$('#article_list').datagrid('reload');">刷新</a>
+    </div>
+</div>
+
+<table id="article_list"></table>
+<script type="text/javascript">
+    $("#article_list").datagrid({
+        loadMsg: '加载中……',
+        onLoadError: function () {
+            alert('数据加载失败!');
+        },
+        fitColumns: true,
+        url: '@Url.Action("JsonUserList")',
+        pageSize: 10,
+        pageNumber: 1,
+        pageList: [10, 20, 30],
+        rownumbers: true,
+        columns: [[
+            { field: 'UserID', title: 'ID', checkbox: true },
+            { field: 'UserName', title: '帐号名称' },
+            { field: 'DisplayName', title: '真实姓名' },
+            { field: 'Email', title: '邮件地址' },
+            { field: 'Tel', title: '联系电话' },
+            { field: 'CompanyName', title: '公司名称' },
+            { field: 'Roles', title: '所属角色' },
+            { field: 'UserLoginNum', title: '登录次数' },
+            { field: 'EntryPoint', title: '登录入口' },
+            { field: 'LoginTime', title: '登录时间', align: 'right', formatter: function (value, row, index) { return $.jsonDateFormat(value); } },
+            { field: 'RegistrationTime', title: '注册时间', align: 'right', formatter: function (value, row, index) { return $.jsonDateFormat(value); } },
+            { field: 'LoginIP', title: '登录IP' },
+            { field: 'Valid', title: '是否有效' },
+        ]],
+        pagination: true,
+        idField: "UserID",
+        toolbar: '#toolbar',
+        onDblClickRow: function (rowIndex, rowData) {
+            $.addSubTab("用户修改", "@Url.Action("UserEdit")/" + rowData.UserID, "icon-page");
+        }
+    });
+    $('#article_list').datagrid('getPager').pagination({
+        displayMsg: '当前显示从{from}-{to}共{total}记录'
+    });
+    //var p = $('#article_list').datagrid('getPager');
+    //(p).pagination({
+    //    beforePageText: '第',//页数文本框前显示的汉字
+    //    afterPageText: '页    共 {pages} 页',
+    //    displayMsg: '共{total}条数据',
+    //});
+
+    //用户注册
+    function add()
+    {
+        $.addSubTab("注册新用户", "@Url.Action("AddUser")", "icon-page");
+    }
+    //删除admin
+    function del()
+    {
+        var rows = $("#article_list").datagrid("getSelections");
+        if (!rows || rows.length < 1) {
+            $.messager.alert("提示", "未选择任何行!");
+            return;
+        } else if (rows.length > 0) {
+            $.messager.confirm("确认", "您确定要删除所选行吗？", function (r) {
+                if (r) {
+                    $.messager.progress();
+                    count = 0;
+                    $.each(rows, function (index, value) {
+                        $.post("@Url.Action("JsonUserDel")", { id: value.UserID }, function () {
+                            if (++count == rows.length) {
+                                $.messager.progress('close');
+                                rows.length = 0;
+                                $("#article_list").datagrid('reload');
+                            }
+                        });
+                    });
+                }
+            });
+        }
+    }
+    //修改
+    function edit()
+    {
+        var rows = $("#article_list").datagrid("getSelections");
+        if (!rows || rows.length < 1) {
+            $.messager.alert("提示", "未选择任何行!");
+            return;
+        } else if (rows.length != 1) {
+            $.messager.alert("提示", "仅能选择一行!");
+            return;
+        } else {
+            $.addSubTab("用户修改", "@Url.Action("UserEdit")/" + rows[0].UserID, "icon-page");
+        }
+    }
+    $(function () {
+        $("#btn_search").click(function () {
+            $("#article_list").datagrid('load',
+            {
+                title: $("#textbox_title").val(),
+                roleid: $("#combo_category").combotree('getValue'),
+                fromDate: $("#datebox_fromdate").datebox('getValue'),
+                toDate: $("#datebox_todate").datebox('getValue')
+            });
+        });
+    })
+</script>
+
+
+

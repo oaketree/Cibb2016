@@ -1,0 +1,23 @@
+﻿@model CMS.BLL.Magazine.Models.CategoryModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="easyui-panel" title="添加分类">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name)@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="添加分类" />
+                <input type="reset" value="取消">
+            </div>
+        </div>
+    </div>
+}
+
+
+

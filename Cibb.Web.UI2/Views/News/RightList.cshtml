@@ -1,0 +1,6 @@
+﻿@model IQueryable<Cibb.Web.BLL.Model.Link>
+@foreach (var p in Model)
+{
+    <li>@Html.ActionLink(p.title, "Detail", new { id = p.linkid }, new { target = "_blank" })</li>
+    <li>@p.date.Value.ToString("MM-dd")</li>
+}

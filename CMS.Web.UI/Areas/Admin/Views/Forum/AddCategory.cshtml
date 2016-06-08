@@ -1,0 +1,42 @@
+﻿@model CMS.BLL.Forum.Models.CategoryModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="easyui-panel" title="添加分类">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>@Html.LabelFor(model => model.Forum)</td>
+                    <td>@Html.DropDownListFor(model => model.Forum, Model.ForumList, new { @class = "easyui-combobox" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Category)</td>
+                    <td>@Html.DropDownListFor(model => model.Category, Model.CategoryList, new { @class = "easyui-combobox" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <a id="submit" href="javascript:void(0)" class="easyui-linkbutton" >添加分类</a>
+                <a id="clear" href="javascript:void(0)" class="easyui-linkbutton">取消</a>
+            </div>
+
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        $("#submit").click(function () {
+            $("form").submit();
+        })
+        $("#clear").click(function () {
+            $("form")[0].reset();
+        })
+    })
+</script>
+
+
+

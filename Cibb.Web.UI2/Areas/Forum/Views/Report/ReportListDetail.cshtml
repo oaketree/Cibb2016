@@ -1,0 +1,40 @@
+﻿@model Cibb.Web.BLL.Reports.Models.ReportModel
+@if (Model.hasubcategory)
+{
+    foreach (var item in Model.lr)
+    {
+        <div class="center_zhuti">@item.subcategory</div>
+        <div>
+            @foreach (var item2 in item.title)
+            {
+                <div class="speechli">
+                    <div class="speechlileft"><img src="~/Content/upload/forum/thumbpiclist/@item2.img" width="140" height="167"></div>
+                    <div class="speechliright">
+                        <div class="preweight"><span class="precolor">演讲题目：</span>@item2.title</div>
+                        <div class="preweight"><span class="precolor">演讲嘉宾：</span>@item2.speaker</div>
+                        <div><span class="precolor">演讲摘要：</span><a href="@Url.Action("Detail", "Report", new { id=item2.linkid})" class="prelink" target="_blank">@Html.HtmlClear(item2.summary, 110)</a><a href="@Url.Action("Detail", "Report", new { id=item2.linkid})" target="_blank"><img src="/Content/images/forum/xq.gif" width="51" height="23" class="preimg"></a></div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+}
+else
+{
+    <div>
+        @foreach (var item in Model.rl.title)
+        {
+            <div class="speechli">
+                <div class="speechlileft"><img src="/Content/upload/forum/thumbpiclist/@item.img" width="140" height="167"></div>
+                <div class="speechliright">
+                    <div class="preweight"><span class="precolor">演讲题目：</span>@item.title</div>
+                    <div class="preweight"><span class="precolor">演讲嘉宾：</span>@item.speaker</div>
+                    <div><span class="precolor">演讲摘要：</span><a href="@Url.Action("Detail", "Report", new { id=item.linkid})" class="prelink" target="_blank">@item.summary</a><a href="@Url.Action("Detail", "Report", new { id=item.linkid})" target="_blank"><img src="/Content/images/forum/xq.gif" width="51" height="23" class="preimg"></a></div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+

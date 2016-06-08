@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "理事会领导-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/staticcss")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/staticjs")
+}
+
+<div id="kj_static_01">
+    @Html.Action("Left")
+    <div id="static_right">
+        <div id="lsh_dh">
+            <div><img src="../Content/images/lsh01.gif" width="121" height="29" /></div>
+            <div id="lsh_dh02">
+                <div><a href="@Url.Action("BranchDirector")"><img src="../Content/images/lsh02_01.gif" width="85" height="31" /></a></div>
+                <div><img src="../Content/images/lsh03.gif" width="21" height="31" /></div>
+                <div><a href="@Url.Action("BranchCompany")"><img src="../Content/images/lsh04_02.gif" width="73" height="31" /></a></div>
+            </div>
+        </div>
+
+        <div class="lsh_line"></div>
+        <div class="bottomtopkong"></div>
+
+        <div class="lsld">
+            <div class="ldpic"><img src="../Content/images/knowledge/shen.jpg" width="254" height="342" /></div>
+            <div class="ldnr">
+
+                <div>
+                    <div class="wenzimingld">沈&nbsp; 欣</div><div class="wenzizhiwuld">理事长</div><div class="lddanwei">上海工业锅炉研究所所长、党委副书记</div>
+                </div>
+
+                <div>
+                    沈欣，男，现年50岁，中共党员，硕士研究生，高级经济师。曾任上海建筑机械制造
+                    厂团委副书记，上海电气（集团）总公司团委组织部长、宣传处主任科员，上海电气
+                    （集团）印刷包装机械有限公司党办主任、总经办主任，上海机电股份有限公司综合
+                    办主任、总经理助理、副总经理。现任上海工业锅炉研究所所长、党委副书记。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,186 @@
+﻿@model CMS.BLL.Forum.Models.ArticleModel
+@section scripts{
+    @Scripts.Render("~/Content/KindEditor/kindeditor-min.js")
+    <script type="text/javascript">
+    KindEditor.ready(function (K) {
+        window.editor = K.create('#Summary', {
+            afterBlur: function () { this.sync(); },
+            height: '300px'
+        });
+    });
+
+    $(function () {
+        $("#submit").click(function () {
+            $("form").submit();
+        })
+        $("#clear").click(function () {
+            $("form")[0].reset();
+        })
+        $.getForum();
+        $.getCategory();
+        $.getSubCategory();
+        $("#Forum").change(function () {
+            $.changeSubCategory();
+        })
+        $("#Category").change(function () {
+            $.changeSubCategory();
+        })
+        $("#imgDel").click(function () {
+            $.messager.confirm("确认", "您确定要删除图片？",function(r){
+                if(r){
+                    $.messager.progress();
+                    $.post("@Url.Action("JsonImgDel")", {id:@Model.ID},function(){
+                        $.messager.progress('close');
+                        $("#img").hide();
+                    })
+                }
+            })
+        })
+        $("#fileDel").click(function(){
+            $.messager.confirm("确认", "您确定要删除PPT？",function(r){
+                if(r){
+                    $.messager.progress();
+                    $.post("@Url.Action("JsonFileDel")", {id:@Model.ID},function(){
+                        $.messager.progress('close');
+                        $("#file").hide();
+                    })
+                }
+            })
+        })
+    })
+    $.extend({
+        getForum: function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("JsonForum")",
+                async: false,
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#Forum"));
+                    })
+                    $("#Forum").val(@Model.Forum);
+                }
+            });
+        },
+        getCategory: function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("JsonCategory")",
+                async: false,
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#Category"));
+                    })
+                    $("#Category").val(@Model.Category);
+                }
+            });
+        },
+        changeSubCategory: function () {
+            $("#SubCategory").empty();
+            $.post("@Url.Action("JsonSubCategory")", { f: $("#Forum").val(), c: $("#Category").val() }, function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#SubCategory"));
+                })
+            })
+        },
+        getSubCategory: function () {
+            $.post("@Url.Action("JsonSubCategory")", { f: $("#Forum").val(), c: $("#Category").val() }, function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#SubCategory"));
+                })
+                $("#SubCategory").val(@Model.SubCategory);
+            })
+        }
+    })
+</script>
+
+}
+@using (Html.BeginForm("ArticleEdit", "Forum", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
+    <div class="easyui-panel" title="添加文章">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>论坛列表</td>
+                    <td>
+                        <select id="Forum" name="Forum"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>报告类型</td>
+                    <td>
+                        <select id="Category" name="Category"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>报告子分类</td>
+                    <td><select id="SubCategory" name="SubCategory"></select></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Title)</td>
+                    <td>
+                        @Html.EditorFor(model => model.Title)
+                        @Html.ValidationMessageFor(model => model.Title)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Speaker)</td>
+                    <td>
+                        @Html.EditorFor(model => model.Speaker)
+                        @Html.ValidationMessageFor(model => model.Speaker)
+                    </td>
+                </tr>
+                <tr>
+                    <td>演讲人介绍</td>
+                    <td>
+                        @Html.TextAreaFor(model => model.Profile)
+                        @Html.ValidationMessageFor(model => model.Profile)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Summary)</td>
+                    <td>@Html.EditorFor(model => model.Summary)</td>
+                </tr>
+                <tr>
+                    <td>照片上传</td>
+                    <td><input name="Image" id="Image" type="file"></td>
+                </tr>
+                @if (Model.Image != string.Empty)
+                {
+                    <tr id="img">
+                        <td>图片</td>
+                        <td>
+                            <img src="/Content/upload/forum/thumbpic/@Model.Image" alt="" /><br/>
+                            <a href="#" id="imgDel" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除图片</a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>PPT上传</td>
+                    <td><input name="FileUpload" id="FileUpload" type="file"></td>
+                </tr>
+                @if (Model.FileUpload != string.Empty)
+                {
+                    <tr id="file">
+                        <td>文件</td>
+                        <td>
+                            @Model.FileUpload
+                            <a href="#" id="fileDel" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除文件</a>
+                        </td>
+                    </tr>
+                }
+               
+            </table>
+            <div style="text-align:center;padding:5px">
+                <a id="submit" href="javascript:void(0)" class="easyui-linkbutton">修改文章</a>
+                <a id="clear" href="javascript:void(0)" class="easyui-linkbutton">取消</a>
+            </div>
+        </div>
+    </div>
+}
+
+
+

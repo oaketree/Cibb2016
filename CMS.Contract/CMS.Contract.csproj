@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8432869C-6449-44F3-9505-7556F909AE4D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CMS.Contract</RootNamespace>
+    <AssemblyName>CMS.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Admin\AdminRole.cs" />
+    <Compile Include="Models\Admin\Authorise.cs" />
+    <Compile Include="Models\Forum\ForumCategory.cs" />
+    <Compile Include="Models\Forum\Forums.cs" />
+    <Compile Include="Models\Forum\WebDBContext.cs" />
+    <Compile Include="Models\Magazine\GyglArticle.cs" />
+    <Compile Include="Models\Magazine\GyglAssist.cs" />
+    <Compile Include="Models\Magazine\Gygl.cs" />
+    <Compile Include="Models\Forum\Report.cs" />
+    <Compile Include="Models\Admin\RoleAuthorise.cs" />
+    <Compile Include="Models\Magazine\GyglCategory.cs" />
+    <Compile Include="Models\Magazine\GyglCategoryRelation.cs" />
+    <Compile Include="Models\Magazine\GyglComment.cs" />
+    <Compile Include="Models\Magazine\GyglImage.cs" />
+    <Compile Include="Models\Magazine\WebDBContext.cs" />
+    <Compile Include="Models\User\Company.cs" />
+    <Compile Include="Models\User\Person.cs" />
+    <Compile Include="Models\User\UAuthorise.cs" />
+    <Compile Include="Models\User\URole.cs" />
+    <Compile Include="Models\User\URoleAuthorise.cs" />
+    <Compile Include="Models\User\UserDetail.cs" />
+    <Compile Include="Models\User\UserRole.cs" />
+    <Compile Include="Models\User\Users.cs" />
+    <Compile Include="Models\Admin\WebDBContext.cs" />
+    <Compile Include="Models\Admin\Admins.cs" />
+    <Compile Include="Models\Admin\Role.cs" />
+    <Compile Include="Models\User\WebDBContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cibb.Core.Cache\Cibb.Core.Cache.csproj">
+      <Project>{c3c95dcc-fcab-4912-b1a9-aa9541fc9a6c}</Project>
+      <Name>Cibb.Core.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cibb.Core.DAL\Cibb.Core.DAL.csproj">
+      <Project>{bbe8ebe4-cba9-4ed7-9c1b-2434c4878ab3}</Project>
+      <Name>Cibb.Core.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

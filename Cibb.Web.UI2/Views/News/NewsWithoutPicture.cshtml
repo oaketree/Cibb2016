@@ -1,0 +1,10 @@
+﻿@model Cibb.Web.Contract.Model.New
+<div class="news_wutu01">
+    <div>
+        <div class="wen_main_title">@Html.ActionLink(Html.Cut(Model.Title,50), "Detail", new { id = Model.newsid }, new { target = "_blank",title=Model.Title })</div>
+        <div class="wen_main_sour">来源:@Model.InfoFrom&nbsp; @string.Format("{0:f}", Model.RegDate)&nbsp;<span class="font02">@Html.ActionLink(Model.NewsColumn.ColumnName, "List", new { category = Model.ColumnID })</span></div>
+        <div class="wen_main_np"><a href="@Url.Action("Detail", new { id=Model.newsid})">@Html.HtmlClear(Model.Content, 145)</a></div>
+    </div>
+    
+    <div class="news_bg01"></div>
+</div>

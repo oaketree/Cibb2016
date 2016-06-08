@@ -1,0 +1,66 @@
+﻿@model Cibb.Web.Contract.Model.New
+    @{
+        ViewBag.Title = @Model.Title + "-中国电器工业协会工业锅炉分会";
+    }
+@section css{
+    @Styles.Render("~/Content/newscss")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/newsdjs")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom","Home")
+    }
+    <div id="kj_news_center_01">
+        <div id="kj_news_center_01_left">
+            <div class="wen_main_title" id="title">@Html.Raw(@Html.changeLine(@Model.Title))</div>
+            <div class="wen_main_sour news_detail_title">
+                来源:@Model.InfoFrom&nbsp; @Model.RegDate&nbsp;<span class="font02"><a href='@Url.Action("List", new { category = Model.ColumnID })' target="_blank">@Model.NewsColumn.ColumnName</a></span>&nbsp; &nbsp;  <img src="/Content/images/news/shoucan.gif" width="20" height="17">&nbsp;<a id="favorites">收藏</a>
+
+                <div class="bdsharebuttonbox" data-tag="share_1">
+                    <a class="bds_mshare" data-cmd="mshare"></a>
+                    <a class="bds_qzone" data-cmd="qzone" href="#"></a>
+                    <a class="bds_tsina" data-cmd="tsina"></a>
+                    <a class="bds_renren" data-cmd="renren"></a>
+                    <a class="bds_tqq" data-cmd="tqq"></a>
+                    <a class="bds_weixin" data-cmd="weixin"></a>
+                    <a class="bds_more" data-cmd="more"></a>
+                </div>
+              
+
+                   
+                </div>
+
+            <div class="news_bg01"></div>
+
+            <div class="news_detail_bottom">
+              @Html.Raw(Model.Content)
+            </div>
+
+
+        </div>
+        <div id="kj_news_center_01_right">
+            <div>
+                <img src="/Content/images/news/news02.jpg" width="298" height="231">
+                <img src="/Content/images/tj.gif" width="293" height="91" class="tu_top">
+            </div>
+            <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13" />关注热点</div>
+
+            <div id="jwen_gz">
+                <ul>
+                    @Html.Action("Hot")
+                </ul>
+            </div>
+
+            <!--开始--><!--结束-->
+            <!--开始--><!--结束-->
+
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+

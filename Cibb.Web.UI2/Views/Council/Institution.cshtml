@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "分会机构-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/staticcss")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/staticjs")
+}
+<div id="kj_static_01">
+    @Html.Action("Left")
+    <div id="static_right">
+
+        <div class="static_wen01">
+            中国电器工业协会工业锅炉分会<br />
+            Welcome to become membership of Industrial<br />
+            Boiler Branch Of China Electrical Equipment<br />
+            Industry Association(CIBB)
+        </div>
+       
+        <div style="text-align:center">
+            <img src="/Content/images/knowledge/bai00.gif" width="450" height="486">
+        </div>
+        
+       
+    </div>
+</div>
+
+

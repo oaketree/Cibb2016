@@ -1,0 +1,32 @@
+﻿@model CMS.BLL.Forum.Models.CategoryModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
+    <div class="easyui-panel" title="修改分类">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>@Html.LabelFor(model => model.Forum)</td>
+                    <td>@Html.DropDownListFor(model => model.Forum, Model.ForumList)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Category)</td>
+                    <td>@Html.DropDownListFor(model => model.Category, Model.CategoryList)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="修改分类" />
+                <input type="reset" value="取消">
+            </div>
+
+        </div>
+    </div>
+}
+
+

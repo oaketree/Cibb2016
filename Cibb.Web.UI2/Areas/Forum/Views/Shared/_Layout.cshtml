@@ -1,0 +1,21 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css/luntancss.css")
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    @RenderSection("css", required: false)
+</head>
+<body>
+    @Html.Action("Top", "Home")
+    @RenderSection("Header")
+    @RenderBody()
+    @Html.Action("Bottom", "Home")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/forum")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

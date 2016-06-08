@@ -1,0 +1,26 @@
+﻿@model CMS.BLL.Admin.Models.AuthListModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="easyui-panel" title="添加权限">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Description)</td>
+                    <td>@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Description)</td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="添加权限" />
+                <input type="reset" value="取消">
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>中国锅炉网管理中心</title>
+    @Styles.Render("~/Content/css/member.css", "~/Content/css/easyui.css", "~/Content/css/icon.css", "~/Content/css/bootstrap.css")
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Content/scripts/jquery.easyui.min.js"></script>
+    @Scripts.Render("~/bundles/cms")
+</head>
+<body id="layout" class="easyui-layout">
+    <div data-options="region:'north'">
+        <nav id="mainNav" style="text-align:right">
+            欢迎 <a href="javascript:void()"> @ViewBag.User </a>
+            <a href="@Url.Action("Logout","Admin")">注  销</a>
+        </nav>
+    </div>
+    <div data-options="region:'west',split:true" title="导航" style="width: 200px;">
+        <div class="easyui-accordion">
+            @Html.Action("Menu")
+        </div>
+        </div>
+    <div data-options="region:'center'" style="overflow: hidden;">
+        <div id="mainTabs">
+            <div data-options="iconCls:'icon-blank'" title="首页">
+                欢迎使用中国锅炉网管理系统
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'south'">
+        PULING ©  中国锅炉网
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+﻿@model IQueryable<Cibb.Web.Contract.Model.NewsColumn>
+@foreach (var p in Model)
+{
+    <div class="tit"><img src="/Content/images/dot02.gif" width="19" height="13"/>@Html.ActionLink(p.ColumnName, "List", new {category=p.ColumnID })</div>
+    <div class="jwen_yc01">
+        <ul>
+          @Html.Action("RightList", new { category=p.ColumnID})
+        </ul>
+    </div>
+}
+    

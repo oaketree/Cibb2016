@@ -1,0 +1,47 @@
+﻿@model CMS.BLL.Forum.Models.ForumModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="easyui-panel" title="添加论坛">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name)</td>
+                    <td>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.SimpleName)</td>
+                    <td>@Html.EditorFor(model => model.SimpleName, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.SimpleName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Contacts)</td>
+                    <td>@Html.EditorFor(model => model.Contacts, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Contacts)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Phone)</td>
+                    <td>@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Phone)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Email)</td>
+                    <td>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <td>论坛开始时间</td>
+                    <td>@Html.TextBoxFor(m => m.YearFrom, new { @class = "easyui-datebox"})</td>
+                </tr>
+                <tr>
+                    <td>论坛结束时间</td>
+                    <td>@Html.TextBoxFor(m => m.YearTo, new { @class = "easyui-datebox" })</td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="添加论坛" />
+                <input type="reset" value="取消">
+            </div>
+        </div>
+    </div>
+}
+
+
+

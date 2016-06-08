@@ -1,0 +1,23 @@
+﻿@model Cibb.Web.Contract.Model.New
+@{
+    ViewBag.Title = @Model.Title;
+}
+@section css{
+    @Styles.Render("~/Content/newscss")
+}
+
+<div id="detail_news_center_01">
+    <div class="detail_mobile_center">
+        <div class="wen_main_title">@Model.Title</div>
+        <div class="wen_main_sour news_detail_title">
+            来源:@Model.InfoFrom&nbsp; <br/>@string.Format("{0:f}", Model.RegDate)&nbsp;<span class="font02"><a href='@Url.Action("List", new { category = Model.ColumnID })' target="_blank">@Model.NewsColumn.ColumnName</a></span>
+        </div>
+        <div class="news_bg01"></div>
+        <div class="detail_news_mobile_bottom">
+           @Html.Raw(Model.Content)
+        </div>
+    </div>
+</div>
+
+<div id="bottom01"></div>
+

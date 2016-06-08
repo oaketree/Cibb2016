@@ -1,0 +1,46 @@
+﻿@model IQueryable<Cibb.Web.BLL.Model.Link>
+@{
+    ViewBag.Title = "理事单位-中国电器工业协会工业锅炉分会";
+}
+@section css{
+    @Styles.Render("~/Content/staticcss")
+}
+@section Header{
+    @Html.Action("Top", "Home")
+}
+@section Footer{
+    @Html.Action("Bottom", "Home")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/staticjs")
+}
+
+<div id="kj_static_01">
+    @Html.Action("Left")
+    <div id="static_right">
+        <div id="lsh_dh">
+            <div><img src="../Content/images/lsh01.gif" width="121" height="29" /></div>
+            <div id="lsh_dh02">
+                <div><a href="@Url.Action("BranchDirector")"><img src="../Content/images/lsh02_02.gif" width="85" height="31" /></a></div>
+                <div><img src="../Content/images/lsh03.gif" width="21" height="31" /></div>
+                <div><a href="#"><img src="../Content/images/lsh04_01.gif" width="73" height="31" /></a></div>
+            </div>
+        </div>
+        <div class="lsh_line"></div>
+        <div class="mentit">中国电器工业协会工业锅炉分会<br />第六届理事会会员名录</div>
+        <div class="mentit02"></div>
+        <div id="jwen_menberlist">
+            <ul>
+                @foreach (var p in Model)
+                {
+                    <li><a href="@Url.Action("CouncilDetail", new { id = p.linkid })">@p.title</a></li>
+                }
+                @if(Model.Count()%2==1)
+                {
+                <li></li>
+                }
+                
+            </ul>
+        </div>
+    </div>
+</div>

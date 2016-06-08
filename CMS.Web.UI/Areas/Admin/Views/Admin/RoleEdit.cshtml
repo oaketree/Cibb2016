@@ -1,0 +1,42 @@
+﻿@model CMS.BLL.Admin.Models.RoleAuthModel
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.RoleID)
+    <div class="easyui-panel" title="角色修改">
+        @Html.ValidationSummary(true)
+        <div style="padding:10px 60px 20px 60px">
+            <table cellpadding="5">
+                <tr><td>@Html.LabelFor(model => model.Name)</td>
+                <td>@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "easyui-textbox" } })
+                    @Html.ValidationMessageFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Description)</td>
+                    <td>@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "easyui-textbox" } })@Html.ValidationMessageFor(model => model.Description)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Authorises)</td>
+                    <td>
+                        @foreach (var item in Model.Authorises)
+                        {
+                            var ischecked = string.Empty;
+                            if (item.Selected)
+                            {
+                                ischecked = "checked='checked'";
+                            }
+                            <input name="auth" type="checkbox" value="@item.Value" @ischecked /> @item.Text
+                        }
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align:center;padding:5px">
+                <input type="submit" value="确认修改" />
+                <input type="reset" value="取消">
+            </div>
+</div>
+        </div>
+    
+}
+
+

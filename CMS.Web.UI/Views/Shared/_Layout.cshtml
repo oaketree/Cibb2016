@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 锅炉网管理系统</title>
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Content/scripts/jquery.easyui.min.js")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="container body-content"> 
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now -中国锅炉网管理系统</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+﻿@model IQueryable<Cibb.Web.BLL.Model.Link>
+@foreach (var p in Model)
+{
+    <li>@Html.ActionLink(Html.Cut(p.title, 38), "Detail", new { id = p.linkid }, new { target = "_blank",title=p.title})</li>
+    <li>[@p.date.Value.ToString("MM-dd")]</li>
+    @*<h2>导航属性:@p.columnName</h2>*@
+}
+

@@ -1,0 +1,5 @@
+﻿@model IEnumerable<System.Web.Mvc.SelectListItem>
+@foreach (var item in Model)
+{
+    <input name="ck" type="checkbox" value="@item.Value" /> @item.Text
+}
