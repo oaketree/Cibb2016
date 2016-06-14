@@ -570,7 +570,7 @@ namespace CMS.BLL.Magazine
             }
             else
             {
-                img.save("/Content/upload/magazine/image/", new Cut { width = 850, height = 100, mode = "W" });
+                img.save("/Content/upload/magazine/image/", new Cut { width = 796, height = 100, mode = "W" });
                 img.save("/Content/upload/magazine/thumbpic/", new Cut { width = 80, height = 80, mode = "H" });
                 img.end();
                 gyglImage.Insert(new GyglImage
@@ -592,7 +592,7 @@ namespace CMS.BLL.Magazine
             }
             else
             {
-                img.save("/Content/upload/magazine/image/", new Cut { width = 850, height = 100, mode = "W" });
+                img.save("/Content/upload/magazine/image/", new Cut { width = 796, height = 100, mode = "W" });
                 img.save("/Content/upload/magazine/thumbpic/", new Cut { width = 80, height = 80, mode = "H" });
                 img.end();
                 gyglImage.Insert(new GyglImage
