@@ -41,20 +41,21 @@ namespace CMS.BLL.Magazine
         public object GetCategory(int pageIndex, int pageSize)
         {
             var _total = this.gyglCategory.FindAll().Count();
-            var _rows = this.gyglCategory.FindAllByPage(null,true,o=>o.SortID, pageSize, pageIndex).Select(s=> new {
-                ID=s.ID,
-                Name=s.Name,
-                SortID=s.SortID.Value
+            var _rows = this.gyglCategory.FindAllByPage(null, true, o => o.SortID, pageSize, pageIndex).Select(s => new
+            {
+                ID = s.ID,
+                Name = s.Name,
+                SortID = s.SortID.Value
             });
             return new { total = _total, rows = _rows };
         }
 
         public void setSort(string sort)
         {
-            var s= JsonConvert.DeserializeObject<List<Sort>>(sort);
+            var s = JsonConvert.DeserializeObject<List<Sort>>(sort);
             foreach (var a in s)
             {
-                var gc= gyglCategory.GetById(a.id);
+                var gc = gyglCategory.GetById(a.id);
                 gc.SortID = a.afterid;
                 gyglCategory.Update(gc);
             }
@@ -87,11 +88,11 @@ namespace CMS.BLL.Magazine
                 Summary = am.Summary,
                 //Year=gl.Year,
                 //Period=gl.Period,
-                Hit=0,
-                Verify=Convert.ToBoolean(am.Verify)
+                Hit = 0,
+                Verify = Convert.ToBoolean(am.Verify)
             };
             gyglArticle.Insert(a);
-            var img = gyglImage.FindAll(n=>n.Guid==am.guid);
+            var img = gyglImage.FindAll(n => n.Guid == am.guid);
             foreach (var item in img)
             {
                 item.ArticleID = a.ID;
@@ -117,9 +118,10 @@ namespace CMS.BLL.Magazine
         public CategoryModel getCategory(int id)
         {
             var a = gyglCategory.GetById(id);
-            return new CategoryModel {
-                ID=a.ID,
-                Name=a.Name,
+            return new CategoryModel
+            {
+                ID = a.ID,
+                Name = a.Name,
             };
         }
 
@@ -151,12 +153,14 @@ namespace CMS.BLL.Magazine
 
         public bool ArticleEdit(ArticleModel am)
         {
-            var gl = gygl.Find(n => n.Year == int.Parse(am.Year) && n.Period == int.Parse(am.Period));
+            var year = int.Parse(am.Year);
+            var period = int.Parse(am.Period);
+            var gl = gygl.Find(n => n.Year == year && n.Period == period);
             if (gl == null)
                 return false;
             else
             {
-                var a= gyglArticle.GetById(am.ID);
+                var a = gyglArticle.GetById(am.ID);
                 a.Address = am.Address;
                 a.Author = am.Author;
                 a.CategoryID = int.Parse(am.Category);
@@ -167,6 +171,7 @@ namespace CMS.BLL.Magazine
                 a.Summary = am.Summary;
                 a.Title = am.Title;
                 a.Verify = Convert.ToBoolean(am.Verify);
+                gyglArticle.Update(a);
                 return true;
             }
         }
@@ -174,7 +179,8 @@ namespace CMS.BLL.Magazine
         public void CategoryDel(int id)
         {
             var gr = gyglCategoryRelation.FindAll(n => n.CategoryID == id);
-            foreach (var del in gr) {
+            foreach (var del in gr)
+            {
                 gyglCategoryRelation.Delete(del);
             }
             gyglCategory.Delete(id);
@@ -185,7 +191,7 @@ namespace CMS.BLL.Magazine
         {
             Func<int, string> cv = c =>
             {
-                var gc=this.gyglCategoryRelation.FindAll(n => n.GyglID==c);
+                var gc = this.gyglCategoryRelation.FindAll(n => n.GyglID == c);
                 if (gc != null)
                 {
                     List<string> str = new List<string>();
@@ -251,7 +257,7 @@ namespace CMS.BLL.Magazine
                 sc.Add(new
                 {
                     Text = item.Name,
-                    Value =item.ID
+                    Value = item.ID
                 });
             }
             return sc;
@@ -282,14 +288,14 @@ namespace CMS.BLL.Magazine
                 {
                     Text = item.Category.Name,
                     Value = item.CategoryID.ToString(),
-                    SortID=item.Category.SortID.Value,
+                    SortID = item.Category.SortID.Value,
                 });
             }
             var r = sc.OrderBy(o => o.SortID);
             return r.ToList();
         }
 
-        public List<CategorySort> GetMagazineCategory2(int y,int p)
+        public List<CategorySort> GetMagazineCategory2(int y, int p)
         {
             var gl = gygl.Find(n => n.Year == y && n.Period == p);
             if (gl == null)
@@ -316,9 +322,12 @@ namespace CMS.BLL.Magazine
         {
             string imgfile = string.Empty;
             var img = new Uploader("Image", new string[] { ".jpg", ".png", ".gif", ".jpeg" });
+            string delpath1 = "E:/boiler/gygl/gygl2016/Content/Upload/Magazine/Cover/";
+            string delpath2 = "/Content/upload/magazine/cover/";
             if (img.checkUpload())
             {
-                img.save("/Content/upload/magazine/cover/",new Cut { width=80,height=80,mode="Cut"});
+                img.save(delpath1, new Cut { width = 190, height = 255, mode = "Cut" }, false);
+                img.save(delpath2, new Cut { width = 80, height = 80, mode = "Cut" });
                 //这边还可以继续保存
                 img.end();
                 imgfile = img.FileName;
@@ -329,14 +338,17 @@ namespace CMS.BLL.Magazine
                 Name = mm.Name,
                 Year = int.Parse(mm.Year),
                 Period = int.Parse(mm.Period),
-                CoverImage=imgfile
+                TotalPeriod = int.Parse(mm.TotalPeriod),
+                Publish = Convert.ToDateTime(mm.Publish),
+                CoverImage = imgfile
             };
             this.gygl.Insert(a);
             foreach (var item in mm.Category)
             {
-                this.gyglCategoryRelation.Insert(new GyglCategoryRelation {
-                    GyglID=a.ID,
-                    CategoryID=int.Parse(item)
+                this.gyglCategoryRelation.Insert(new GyglCategoryRelation
+                {
+                    GyglID = a.ID,
+                    CategoryID = int.Parse(item)
                 });
             }
         }
@@ -345,7 +357,7 @@ namespace CMS.BLL.Magazine
         {
             Func<int, IEnumerable<string>> cv = c =>
              {
-                 var li= gyglCategoryRelation.FindAll(n => n.GyglID == c).AsEnumerable().Select(s => s.CategoryID.ToString() );
+                 var li = gyglCategoryRelation.FindAll(n => n.GyglID == c).AsEnumerable().Select(s => s.CategoryID.ToString());
                  return li;
              };
 
@@ -356,8 +368,10 @@ namespace CMS.BLL.Magazine
                 Name = a.Name,
                 Year = a.Year.ToString(),
                 Period = a.Period.ToString(),
+                TotalPeriod = a.TotalPeriod.ToString(),
                 Category = cv(a.ID),
-                CoverImage=a.CoverImage
+                Publish = a.Publish == null ? string.Empty : a.Publish.Value.ToString("MM/dd/yyyy"),
+                CoverImage = a.CoverImage
             };
         }
         public void updateMagazine(MagazineModel mm)
@@ -366,17 +380,22 @@ namespace CMS.BLL.Magazine
             a.Name = mm.Name;
             a.Year = int.Parse(mm.Year);
             a.Period = int.Parse(mm.Period);
-
+            a.TotalPeriod = int.Parse(mm.TotalPeriod);
+            a.Publish = Convert.ToDateTime(mm.Publish);
             var img = new Uploader("Image", new string[] { ".jpg", ".png", ".gif", ".jpeg" });
             if (img.checkUpload())
             {
+                string delpath1 = "E:/boiler/gygl/gygl2016/Content/Upload/Magazine/Cover/";
+                string delpath2 = "/Content/upload/magazine/cover/";
                 if (!string.IsNullOrEmpty(a.CoverImage))
                 {
-                    string delpath1 = "/Content/upload/magazine/cover/";
-                    new FileDel(Path.Combine(delpath1,a.CoverImage));
+                    new FileDel(Path.Combine(delpath1, a.CoverImage), false);
+                    new FileDel(Path.Combine(delpath2, a.CoverImage));
                     //这边还可以继续删除其他路径图片
                 }
-                img.save("/Content/upload/magazine/cover/", new Cut { width = 80, height = 80, mode = "Cut" });
+
+                img.save(delpath1, new Cut { width = 190, height = 255, mode = "Cut" }, false);
+                img.save(delpath2, new Cut { width = 80, height = 80, mode = "Cut" });
                 //这边还可以继续保存
                 img.end();
                 a.CoverImage = img.FileName;
@@ -416,10 +435,13 @@ namespace CMS.BLL.Magazine
             }
         }
 
+
+
+
         public void delMagazine(int id)
         {
             //分类部分删除
-            var gr=gyglCategoryRelation.FindAll(n => n.GyglID == id);
+            var gr = gyglCategoryRelation.FindAll(n => n.GyglID == id);
             foreach (var item in gr)
             {
                 gyglCategoryRelation.Delete(item.ID);
@@ -427,8 +449,10 @@ namespace CMS.BLL.Magazine
             var cover = gygl.GetById(id).CoverImage;
             if (!string.IsNullOrEmpty(cover))
             {
-                string delpath1 = "/Content/upload/magazine/cover/";
-                new FileDel(Path.Combine(delpath1, cover));
+                string delpath1 = "E:/boiler/gygl/gygl2016/Content/Upload/Magazine/Cover/";
+                string delpath2 = "/Content/upload/magazine/cover/";
+                new FileDel(Path.Combine(delpath1, cover), false);
+                new FileDel(Path.Combine(delpath2, cover));
                 //这边还可以继续删除其他路径图片
             }
             //期刊删除
@@ -436,7 +460,7 @@ namespace CMS.BLL.Magazine
         }
 
 
-        public object GetArticleList(string title, int? yearid, int? periodid,int pageIndex, int pageSize)
+        public object GetArticleList(string title, int? yearid, int? periodid, int pageIndex, int pageSize)
         {
             Func<int, int> cv = c =>
             {
@@ -445,8 +469,8 @@ namespace CMS.BLL.Magazine
             Expression<Func<GyglArticle, bool>> express = PredicateExtensions.True<GyglArticle>();
             if (yearid > 0)
             {
-                var gl = gygl.FindAll(n => n.Year == yearid).Select(s=>s.ID).ToList();
-                express = express.And(n =>gl.Contains(n.GyglID.Value));
+                var gl = gygl.FindAll(n => n.Year == yearid).Select(s => s.ID).ToList();
+                express = express.And(n => gl.Contains(n.GyglID.Value));
             }
             if (periodid > 0)
             {
@@ -454,17 +478,18 @@ namespace CMS.BLL.Magazine
                 express = express.And(n => gl.Contains(n.GyglID.Value));
             }
             if (!string.IsNullOrEmpty(title))
-                express = express.And(n => n.Title.Contains(title)||n.Author.Contains(title));
-            var _total =gyglArticle.FindAll(express).Count();
-            var _rows = gyglArticle.FindAllByPage(express, o => o.RegDate, pageSize, pageIndex).AsEnumerable().Select(s => new {
+                express = express.And(n => n.Title.Contains(title) || n.Author.Contains(title));
+            var _total = gyglArticle.FindAll(express).Count();
+            var _rows = gyglArticle.FindAllByPage(express, o => o.RegDate, pageSize, pageIndex).AsEnumerable().Select(s => new
+            {
                 ID = s.ID,
                 Title = s.Title,
-                Gygl=s.Gygl.Name,
-                Category=s.Category.Name,
-                Author=s.Author,
-                Vote=cv(s.ID),
-                Hit=s.Hit,
-                RegDate=s.RegDate.ToString()
+                Gygl = s.Gygl.Name,
+                Category = s.Category.Name,
+                Author = s.Author,
+                Vote = cv(s.ID),
+                Hit = s.Hit,
+                RegDate = s.RegDate.ToString()
             });
             return new { total = _total, rows = _rows };
         }
@@ -472,26 +497,26 @@ namespace CMS.BLL.Magazine
         //ArticleDel
         public void ArticleDel(int id)
         {
-            //var ar = gyglArticle.GetById(id);
             var img = gyglImage.FindAll(n => n.ArticleID == id);
             foreach (var item in img)
             {
-                string delpath1 = "/Content/upload/magazine/thumbpic/";
-                new FileDel(Path.Combine(delpath1, item.ImageID));
-                gyglImage.Delete(item.ID);
+                DelImage(item.ID);
+                //string delpath1 = "/Content/upload/magazine/thumbpic/";
+                //new FileDel(Path.Combine(delpath1, item.ImageID));
+                //gyglImage.Delete(item.ID);
             }
             gyglArticle.Delete(id);
         }
 
         public ArticleModel getArticleGuid()
         {
-            return new ArticleModel { guid= Guid.NewGuid().ToString("N") };
+            return new ArticleModel { guid = Guid.NewGuid().ToString("N") };
         }
 
         //通过guid获取图片
         public object GetUploadPic(string g)
         {
-            var img= gyglImage.FindAll(true,o=>o.SortID,n => n.Guid == g);
+            var img = gyglImage.FindAll(true, o => o.SortID, n => n.Guid == g);
             var _count = img.Count();
             var _row = img.ToList();
             return new { count = _count, row = _row };
@@ -513,11 +538,13 @@ namespace CMS.BLL.Magazine
             {
                 string delpath1 = "/Content/upload/magazine/thumbpic/";
                 new FileDel(Path.Combine(delpath1, del.ImageID));
+                string delpath2 = "E:/boiler/gygl/gygl2016/Content/Upload/Magazine/Page/";
+                new FileDel(Path.Combine(delpath2, del.ImageID), false);
             }
             gyglImage.Delete(id);
         }
 
-        public object getCommentList(string title,int pageIndex, int pageSize)
+        public object getCommentList(string title, int pageIndex, int pageSize)
         {
             Func<int?, string> namecv = c =>
             {
@@ -539,16 +566,17 @@ namespace CMS.BLL.Magazine
             if (!string.IsNullOrEmpty(title))
             {
                 var a = gyglArticle.FindAll(n => n.Title.Contains(title)).Select(n => n.ID).ToList();
-                express = express.And(n =>a.Contains(n.ArticleID.Value) || n.Comment.Contains(title));
+                express = express.And(n => a.Contains(n.ArticleID.Value) || n.Comment.Contains(title));
             }
             var _total = gyglComment.FindAll(express).Count();
-            var _rows = gyglComment.FindAllByPage(express, o => o.RegDate, pageSize, pageIndex).AsEnumerable().Select(s=> new {
-                ID=s.ID,
-                Name=namecv(s.UserID),
-                Reply=namecv(s.ReplyID),
-                Comment=s.Comment,
-                RegDate=s.RegDate.ToString(),
-                Article=acv(s.ArticleID)
+            var _rows = gyglComment.FindAllByPage(express, o => o.RegDate, pageSize, pageIndex).AsEnumerable().Select(s => new
+            {
+                ID = s.ID,
+                Name = namecv(s.UserID),
+                Reply = namecv(s.ReplyID),
+                Comment = s.Comment,
+                RegDate = s.RegDate.ToString(),
+                Article = acv(s.ArticleID)
             });
             return new { total = _total, rows = _rows };
         }
@@ -561,7 +589,7 @@ namespace CMS.BLL.Magazine
         /// <param name="sortid">排序号</param>
         /// <param name="guid">文章的guid</param>
         /// <returns></returns>
-        public object GetFileUpload(int sortid,string guid)
+        public object GetFileUpload(int sortid, string guid)
         {
             var img = new Uploader(new string[] { ".jpg", ".png", ".gif", ".jpeg" });
             if (!img.checkUpload())
@@ -570,7 +598,7 @@ namespace CMS.BLL.Magazine
             }
             else
             {
-                img.save("/Content/upload/magazine/image/", new Cut { width = 796, height = 100, mode = "W" });
+                img.save("E:/boiler/gygl/gygl2016/Content/Upload/Magazine/Page/", new Cut { width = 796, height = 100, mode = "W" }, false);
                 img.save("/Content/upload/magazine/thumbpic/", new Cut { width = 80, height = 80, mode = "H" });
                 img.end();
                 gyglImage.Insert(new GyglImage
@@ -592,12 +620,13 @@ namespace CMS.BLL.Magazine
             }
             else
             {
-                img.save("/Content/upload/magazine/image/", new Cut { width = 796, height = 100, mode = "W" });
+                //E:\boiler\gygl\gygl2016\Content\Upload\Magazine\Cover
+                img.save("E:/boiler/gygl/gygl2016/Content/Upload/Magazine/Page/", new Cut { width = 796, height = 100, mode = "W" }, false);
                 img.save("/Content/upload/magazine/thumbpic/", new Cut { width = 80, height = 80, mode = "H" });
                 img.end();
                 gyglImage.Insert(new GyglImage
                 {
-                    ArticleID=aid,
+                    ArticleID = aid,
                     ImageID = img.FileName,
                     SortID = sortid,
                 });

@@ -20,6 +20,14 @@ namespace CMS.BLL.Magazine.Models
 
         public string Period { get; set; }
 
+        public string TotalPeriod { get; set; }
+
+        public string Publish { get; set; }
+
+        public string Council { get; set; }
+
+        public string CopyRight { get; set; }
+
         public IEnumerable<string> Category { get; set; }
 
         public string CoverImage { get; set; }

@@ -13,9 +13,12 @@
         })
     })
 </script>
+<script src="/Content/ueditor/ueditor.config.js"></script>
+<script  src="/Content/ueditor/ueditor.all.min.js"> </script>
+<script  src="/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
 }
 @model CMS.BLL.Magazine.Models.MagazineModel
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddMagazine", "Magazine", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="easyui-panel" title="添加分类">
@@ -28,23 +31,40 @@
                 </tr>
                 <tr>
                     <td>期刊期数</td>
-                    <td><select id="Period" name="Period">
+                    <td>
+                        <select id="Period" name="Period">
                             <option value="1">第一期</option>
                             <option value="2">第二期</option>
                             <option value="3">第三期</option>
                             <option value="4">第四期</option>
                             <option value="5">第五期</option>
                             <option value="6">第六期</option>
-                        </select></td>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>总期数</td>
+                    <td>@Html.EditorFor(model => model.TotalPeriod)@Html.ValidationMessageFor(model => model.TotalPeriod)</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(model => model.Name)</td>
                     <td>@Html.EditorFor(model => model.Name)@Html.ValidationMessageFor(model => model.Name)</td>
                 </tr>
                 <tr>
+                    <td>出版日期</td>
+                    <td>@Html.TextBoxFor(m => m.Publish, new { @class = "easyui-datebox" })</td>
+                </tr>
+                <tr>
+                    <td>理事会</td>
+                    <td>
+                        <script id="Council" type="text/plain" style="width:500px;height:400px;">
+                        </script>
+                    </td>
+                </tr>
+                <tr>
                     <td>分类选择</td>
                     <td>
-                    <select id="Category" name="Category" size="10" multiple="multiple"></select>
+                        <select id="Category" name="Category" size="10" multiple="multiple"></select>
                     </td>
                 </tr>
                 <tr>
@@ -59,6 +79,9 @@
         </div>
     </div>
 }
+<script>
+    var ue = UE.getEditor('Council');
+</script>
 
 
 
